@@ -1,0 +1,86 @@
+﻿@model SIMOV.Models.ListaMovimientosCapturados
+@{
+    ViewBag.Title = "Lista de movimientos capturados";
+    List<SIMOV.Models.MovimientoCapturado> movimientos = ViewBag.Movimientos;
+}
+
+<h2 class="text-center">MOVIMIENTOS</h2>
+
+<button type="button" class="btn btn-primary">
+    <i class="bi bi-plus-lg"></i>
+    Nuevo
+</button>
+
+@using (Html.BeginForm("BloqueaMovimiento", "Movimientos", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">RFC</th>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">MOVIMIENTO</th>
+                <th scope="col">MOTIVO</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movimiento in movimientos)
+            {
+
+                string checkDisabled = "";
+                string btnCancelar = "";
+                string btnEnviar = "";
+
+                if (movimiento.estatus == 2)
+                {
+                    checkDisabled = "disabled";
+                }
+                if (movimiento.estatus == 3)
+                {
+                    btnEnviar = "disabled";
+                }
+                if (movimiento.estatus == 4)
+                {
+                    btnCancelar = "disabled";
+                }
+
+                <tr>
+                    <th>
+                        <input type="checkbox" class="form-check-input" value="@movimiento.id" name="id[]" id="id[]" @checkDisabled />
+                    </th>
+                    <th scope="row">@movimiento.rfc</th>
+                    <td>@movimiento.nombre</td>
+                    <td>@movimiento.tipo_movimiento</td>
+                    <td>@movimiento.tipo_motivo</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-danger" onclick="cancelar(@movimiento.id);" @btnCancelar>Cancelar</button>
+                            @Html.ActionLink("Editar", "Editar", "Movimientos", new { id = @movimiento.id }, new { @class = "btn btn-success", role = "button" })
+                            <button type="button" class="btn btn-secondary">Documentos</button>
+                            <button type="button" class="btn btn-primary" onclick="enviar(@movimiento.id);" @btnEnviar>Enviar</button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-center">
+        <button type="submit" class="btn btn-warning">
+            <i class="bi bi-ban"></i>
+            Bloquear
+        </button>
+    </div>
+}
+
+@section scripts{
+    <script>
+        function enviar(capturaId) {
+            window.location.href = '@Url.Content("~/Movimientos/EnviarYGenerarAcuse")?capturaId=' + capturaId;
+        }
+
+        function cancelar(capturaId) {
+            window.location.href = '@Url.Content("~/Movimientos/CancelarMovimiento")?capturaId=' + capturaId;
+        }
+    </script>
+}

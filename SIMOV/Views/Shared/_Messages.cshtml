@@ -1,0 +1,35 @@
+﻿@if (ViewBag.Success !=null && ViewBag.Sucess != "")
+{
+    <div class="alert alert-success" role="alert">
+        <i class="bi bi-check-circle-fill"></i>
+        Aquí va el mensaje de operación exitosa
+        @ViewBag.Success
+    </div>
+}
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <div class="alert alert-danger" role="alert">
+        <i class="bi bi-x-circle-fill"></i>
+        Aquí va el mensaje de operación error
+        @ViewBag.Error
+    </div>
+}
+
+@if (ViewBag.Alert != null && ViewBag.Alert != "")
+{
+    <div class="alert alert-warning " role="alert">
+        <i class="bi bi-exclamation-circle-fill"></i>
+        Aquí va el mensaje de alerta
+        @ViewBag.Alert
+    </div>
+}
+
+@if (ViewBag.Info != null && ViewBag.Info != "")
+{
+    <div class="alert alert-primary" role="alert">
+        <i class="bi bi-info-circle-fill"></i>
+        Aquí va el mensaje de información
+        @ViewBag.Info
+    </div>
+}

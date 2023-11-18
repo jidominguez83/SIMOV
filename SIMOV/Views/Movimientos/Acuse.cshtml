@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDocs.cshtml";
+    ViewBag.Title = "Acuse";
+}
+
+<style>
+    table, thead, th, tbody, tr, td {
+        border: none;
+    }
+
+    .acuse {
+        border-color: #89ac76;
+        border-width: 5px;
+        border-style: solid;
+        padding: 10px;
+    }
+</style>
+
+<table width="80%" align="center">
+    <thead>
+        <tr>
+            <th class="text-center"><img src="~/img/logos.jpg" alt="Logo SLP" /></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <br /><br /><br />
+                <h1 class="text-center">SISTEMA INTEGRAL DE LICENCIAS Y BAJAS (SILB)</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br /><br />
+                <h2 class="text-center">Acuse de @ViewBag.NombreTipo</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="acuse">
+                    <p class="text-center"><strong>@ViewBag.BaseLegal</strong></p>
+                    <strong>Fecha de emisión:</strong> @ViewBag.FechaEmision
+                    <br />
+                    <strong>Emisor:</strong> @ViewBag.Emisor
+                    <br />
+                    <strong>Receptor:</strong> @ViewBag.Depto
+                    <br />
+                    <strong>Estatus de la solicitud:</strong> En validación
+                    <br />
+                    @{
+                        int id = ViewBag.Id;
+                        string folio = id.ToString().PadLeft(4, '0');
+                    }
+                    <strong>Folio:</strong> @folio/@DateTime.Now.Year
+                    <br />
+                    <strong>Observaciones:</strong>
+                    <br />
+                    <ul>
+                        <li>
+                            La recepción de la Solicitud de la @ViewBag.NombreTipo, no garantiza su autorización.
+                        </li>
+                        <li>
+                            En caso de proceder la presente solicitud, la licencia es irrenunciable, y no se debe de dejar de asistir a las labores en tanto no sea autorizada por escrito esta petición.
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

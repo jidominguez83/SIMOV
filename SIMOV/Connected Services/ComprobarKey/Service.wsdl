@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://cgia.seslp.gob.mx/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://cgia.seslp.gob.mx/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://cgia.seslp.gob.mx/">
+      <s:element name="RegistroUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="llave" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="app" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="llaveactiva" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dv" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistroUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegistroUsuarioResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="llaveactiva" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dv" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistroMovUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="llave" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="app" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="mod" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="operacion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="renovarsesion" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="tabla" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="detalle" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistroMovUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegistroMovUsuarioResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="detalle" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoEstatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoEstatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ObtengoEstatusResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizoEstatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="estatus" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizoEstatusResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CierroSesionUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="llave" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="app" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CierroSesionUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CierroSesionUsuarioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreoLlaveWeb">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="s" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreoLlaveWebResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreoLlaveWebResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoInfoUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoInfoUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtengoInfoUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoUsuarioFil">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="wMsj" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="usNiu" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoUsuarioFilResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtengoUsuarioFilResult" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="wMsj" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="usNiu" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="tempo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="tempoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tempoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoAppsUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoAppsUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtengoAppsUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CambioPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passwordactual" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="wMsj" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CambioPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CambioPasswordResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="wMsj" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoPasswordUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoPasswordUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtengoPasswordUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoEmailUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoEmailUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtengoEmailUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoEmailEmp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoEmailEmpResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtengoEmailEmpResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoCurpUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoCurpUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtengoCurpUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoIdUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoIdUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ObtengoIdUsuarioResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoUsuarioDeId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoUsuarioDeIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtengoUsuarioDeIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NormalizoParametros">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Patmroeras" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NormalizoParametrosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NormalizoParametrosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidoKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="us" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ap" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="yk" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dv" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="modulo" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidoKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidoKeyResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="us" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ap" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="yk" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dv" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="retDV">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="retDVResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="retDVResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoURLApp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="wclave_app" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoURLAppResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtengoURLAppResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoAreaUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtengoAreaUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtengoAreaUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RegistroUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:RegistroUsuario" />
+  </wsdl:message>
+  <wsdl:message name="RegistroUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:RegistroUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegistroMovUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:RegistroMovUsuario" />
+  </wsdl:message>
+  <wsdl:message name="RegistroMovUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:RegistroMovUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoEstatusSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoEstatus" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoEstatusSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoEstatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualizoEstatusSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualizoEstatus" />
+  </wsdl:message>
+  <wsdl:message name="ActualizoEstatusSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualizoEstatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="CierroSesionUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:CierroSesionUsuario" />
+  </wsdl:message>
+  <wsdl:message name="CierroSesionUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:CierroSesionUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreoLlaveWebSoapIn">
+    <wsdl:part name="parameters" element="tns:CreoLlaveWeb" />
+  </wsdl:message>
+  <wsdl:message name="CreoLlaveWebSoapOut">
+    <wsdl:part name="parameters" element="tns:CreoLlaveWebResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoInfoUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoInfoUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoInfoUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoInfoUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoUsuarioFilSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoUsuarioFil" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoUsuarioFilSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoUsuarioFilResponse" />
+  </wsdl:message>
+  <wsdl:message name="tempoSoapIn">
+    <wsdl:part name="parameters" element="tns:tempo" />
+  </wsdl:message>
+  <wsdl:message name="tempoSoapOut">
+    <wsdl:part name="parameters" element="tns:tempoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoAppsUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoAppsUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoAppsUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoAppsUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="CambioPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:CambioPassword" />
+  </wsdl:message>
+  <wsdl:message name="CambioPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:CambioPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoPasswordUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoPasswordUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoPasswordUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoPasswordUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoEmailUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoEmailUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoEmailUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoEmailUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoEmailEmpSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoEmailEmp" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoEmailEmpSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoEmailEmpResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoCurpUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoCurpUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoCurpUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoCurpUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoIdUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoIdUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoIdUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoIdUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoUsuarioDeIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoUsuarioDeId" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoUsuarioDeIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoUsuarioDeIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="NormalizoParametrosSoapIn">
+    <wsdl:part name="parameters" element="tns:NormalizoParametros" />
+  </wsdl:message>
+  <wsdl:message name="NormalizoParametrosSoapOut">
+    <wsdl:part name="parameters" element="tns:NormalizoParametrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidoKeySoapIn">
+    <wsdl:part name="parameters" element="tns:ValidoKey" />
+  </wsdl:message>
+  <wsdl:message name="ValidoKeySoapOut">
+    <wsdl:part name="parameters" element="tns:ValidoKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="retDVSoapIn">
+    <wsdl:part name="parameters" element="tns:retDV" />
+  </wsdl:message>
+  <wsdl:message name="retDVSoapOut">
+    <wsdl:part name="parameters" element="tns:retDVResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoURLAppSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoURLApp" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoURLAppSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoURLAppResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoAreaUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtengoAreaUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ObtengoAreaUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtengoAreaUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="RegistroUsuario">
+      <wsdl:input message="tns:RegistroUsuarioSoapIn" />
+      <wsdl:output message="tns:RegistroUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistroMovUsuario">
+      <wsdl:input message="tns:RegistroMovUsuarioSoapIn" />
+      <wsdl:output message="tns:RegistroMovUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoEstatus">
+      <wsdl:input message="tns:ObtengoEstatusSoapIn" />
+      <wsdl:output message="tns:ObtengoEstatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizoEstatus">
+      <wsdl:input message="tns:ActualizoEstatusSoapIn" />
+      <wsdl:output message="tns:ActualizoEstatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CierroSesionUsuario">
+      <wsdl:input message="tns:CierroSesionUsuarioSoapIn" />
+      <wsdl:output message="tns:CierroSesionUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreoLlaveWeb">
+      <wsdl:input message="tns:CreoLlaveWebSoapIn" />
+      <wsdl:output message="tns:CreoLlaveWebSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoInfoUsuario">
+      <wsdl:input message="tns:ObtengoInfoUsuarioSoapIn" />
+      <wsdl:output message="tns:ObtengoInfoUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoUsuarioFil">
+      <wsdl:input message="tns:ObtengoUsuarioFilSoapIn" />
+      <wsdl:output message="tns:ObtengoUsuarioFilSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="tempo">
+      <wsdl:input message="tns:tempoSoapIn" />
+      <wsdl:output message="tns:tempoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoAppsUsuario">
+      <wsdl:input message="tns:ObtengoAppsUsuarioSoapIn" />
+      <wsdl:output message="tns:ObtengoAppsUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CambioPassword">
+      <wsdl:input message="tns:CambioPasswordSoapIn" />
+      <wsdl:output message="tns:CambioPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoPasswordUsuario">
+      <wsdl:input message="tns:ObtengoPasswordUsuarioSoapIn" />
+      <wsdl:output message="tns:ObtengoPasswordUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoEmailUsuario">
+      <wsdl:input message="tns:ObtengoEmailUsuarioSoapIn" />
+      <wsdl:output message="tns:ObtengoEmailUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoEmailEmp">
+      <wsdl:input message="tns:ObtengoEmailEmpSoapIn" />
+      <wsdl:output message="tns:ObtengoEmailEmpSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoCurpUsuario">
+      <wsdl:input message="tns:ObtengoCurpUsuarioSoapIn" />
+      <wsdl:output message="tns:ObtengoCurpUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoIdUsuario">
+      <wsdl:input message="tns:ObtengoIdUsuarioSoapIn" />
+      <wsdl:output message="tns:ObtengoIdUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoUsuarioDeId">
+      <wsdl:input message="tns:ObtengoUsuarioDeIdSoapIn" />
+      <wsdl:output message="tns:ObtengoUsuarioDeIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NormalizoParametros">
+      <wsdl:input message="tns:NormalizoParametrosSoapIn" />
+      <wsdl:output message="tns:NormalizoParametrosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidoKey">
+      <wsdl:input message="tns:ValidoKeySoapIn" />
+      <wsdl:output message="tns:ValidoKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="retDV">
+      <wsdl:input message="tns:retDVSoapIn" />
+      <wsdl:output message="tns:retDVSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoURLApp">
+      <wsdl:input message="tns:ObtengoURLAppSoapIn" />
+      <wsdl:output message="tns:ObtengoURLAppSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoAreaUsuario">
+      <wsdl:input message="tns:ObtengoAreaUsuarioSoapIn" />
+      <wsdl:output message="tns:ObtengoAreaUsuarioSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegistroUsuario">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/RegistroUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistroMovUsuario">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/RegistroMovUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoEstatus">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoEstatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizoEstatus">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ActualizoEstatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CierroSesionUsuario">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/CierroSesionUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreoLlaveWeb">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/CreoLlaveWeb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoInfoUsuario">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoInfoUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoUsuarioFil">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoUsuarioFil" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="tempo">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/tempo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoAppsUsuario">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoAppsUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CambioPassword">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/CambioPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoPasswordUsuario">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoPasswordUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoEmailUsuario">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoEmailUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoEmailEmp">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoEmailEmp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoCurpUsuario">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoCurpUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoIdUsuario">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoIdUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoUsuarioDeId">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoUsuarioDeId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NormalizoParametros">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/NormalizoParametros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidoKey">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ValidoKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retDV">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/retDV" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoURLApp">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoURLApp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoAreaUsuario">
+      <soap:operation soapAction="http://cgia.seslp.gob.mx/ObtengoAreaUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegistroUsuario">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/RegistroUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistroMovUsuario">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/RegistroMovUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoEstatus">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoEstatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizoEstatus">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ActualizoEstatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CierroSesionUsuario">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/CierroSesionUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreoLlaveWeb">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/CreoLlaveWeb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoInfoUsuario">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoInfoUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoUsuarioFil">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoUsuarioFil" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="tempo">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/tempo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoAppsUsuario">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoAppsUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CambioPassword">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/CambioPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoPasswordUsuario">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoPasswordUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoEmailUsuario">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoEmailUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoEmailEmp">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoEmailEmp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoCurpUsuario">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoCurpUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoIdUsuario">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoIdUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoUsuarioDeId">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoUsuarioDeId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NormalizoParametros">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/NormalizoParametros" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidoKey">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ValidoKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retDV">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/retDV" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoURLApp">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoURLApp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtengoAreaUsuario">
+      <soap12:operation soapAction="http://cgia.seslp.gob.mx/ObtengoAreaUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://172.16.17.131/nlws/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://172.16.17.131/nlws/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

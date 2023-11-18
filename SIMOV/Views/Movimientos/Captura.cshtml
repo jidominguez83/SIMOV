@@ -1,0 +1,734 @@
+﻿@model SIMOV.Models.captura_mov
+
+@{
+    ViewBag.Title = "Captura";
+}
+
+@using (Html.BeginForm("Guardar", "Movimientos", FormMethod.Post, new { @id = "Form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="row">
+            @Html.HiddenFor(model => model.dias)
+            @Html.HiddenFor(model => model.reglamentacion)
+            @*<strong>Información requerida para emitir una alerta de inicio de trámite del movimiento</strong><br />*@
+            <div class="d-flex justify-content-center">
+                <strong>@Html.LabelFor(model => model.cts, htmlAttributes: new { @class = " control-label col-md-12 text-center" })</strong>
+            </div>
+            <div style="width:100% !important;" class="col-md-1 d-flex justify-content-center">
+                @Html.DropDownListFor(model => model.cts, new SelectList(Model.cts, "ct", "ct", ViewBag.ct_seleccionado), "Selecciona el CT", new
+           {
+
+               @class = "btn btn-default dropdown-toggle",
+
+           })
+
+                @Html.ValidationMessageFor(model => model.cts, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ct)
+            </div>
+        </div>
+
+
+        <div class="row">
+
+
+            <div class="col-md-5">
+                <div class="d-flex justify-content-center">
+                    <strong>@Html.LabelFor(model => model.cve_movs, htmlAttributes: new { @class = "form-label  col-md-5 text-center" })</strong>
+                </div>
+                <div style="width:100% !important;" class="col-md-5 d-flex justify-content-center">
+                    @Html.DropDownListFor(model => model.cve_movs, new SelectList(Model.cve_movs, "Id", "cve_mov"), "Selecciona el Tipo", new
+                     {
+                       style = "max-width: 100%, col-md-5,text-align: left;",
+                       @class = "btn btn-default dropdown-toggle",
+
+                        })
+
+                    @Html.ValidationMessageFor(model => model.cve_movs, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.id_cve_mov)
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="d-flex justify-content-center">
+                    <strong>@Html.LabelFor(model => model.mot_mov, htmlAttributes: new { @class = "form-label" })</strong>
+                </div>
+                <div style="width:100% !important;" class="col-md-7 d-flex justify-content-center">
+                    @Html.DropDownListFor(model => model.mot_mov, new SelectList(Model.mot_mov, "Id", "motivo_mov"), "Selecciona el Tipo", new
+                       {
+                           style = "width: 300px !important, text-align: left;",
+                           @class = "btn btn-default dropdown-toggle",
+
+                       })
+
+                    @Html.ValidationMessageFor(model => model.mot_mov, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.id_tipo_mov)
+                </div>
+            </div>
+        </div>
+        <div id="DivEmpleado">
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <strong>@Html.LabelFor(model => model.empleados, htmlAttributes: new { @class = " control-label col-md-12 text-center" })</strong>
+                </div>
+                <div style="width:100% !important;" class="col-md-12 d-flex justify-content-center">
+                    @Html.DropDownListFor(model => model.empleados, new SelectList(Model.empleados, "Id", "nombre_completo"), "Selecciona el Empleado", new
+                        {
+                        style = "width: 100%, text-align: left",
+                        @class = "col-md-12 btn btn-default dropdown-toggle",
+
+                        })
+
+                    @Html.ValidationMessageFor(model => model.empleados, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.id_empleado)
+                    @Html.HiddenFor(model => model.id_antiguedad)
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    @*<strong>@Html.LabelFor(model => model.empleados, htmlAttributes: new { @class = " control-label col-md-12 text-center" })</strong>*@
+                </div>
+                <div style="width:100% !important;" class="col-md-12 d-flex justify-content-center">
+                    <hr />
+
+                    <table id="TablaPlazas" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Seleccione&nbsp;<span class="text-danger"><strong>*</strong></span></th>
+                                <th scope="col">Plaza</th>
+                                <th scope="col">CCT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @if (ViewBag.plazasEmp != null)
+                            {
+                                int i = 0;
+                                foreach (var plazaEmp in ViewBag.plazasE)
+                                {
+                                    string check = "";
+                                    foreach (var plazaSel in ViewBag.plazasSel)
+                                    {
+                                        if (plazaEmp._Plaza == plazaSel.plaza)
+                                        {
+                                            check = "checked='checked'";
+                                            break;
+                                        }
+                                    }
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="form-check">
+                                                <input type="hidden" value="@i" id="plazas[@i].index" name="plazas[@i].index">
+                                                <input class="form-check-input" type="checkbox" value="@plazaEmp._Plaza" id="plazas[@i].plaza" name="plazas[@i].plaza" @check>
+                                            </div>
+                                        </th>
+                                        <td>@plazaEmp._Plaza </td>
+                                        <td>@plazaEmp.CTrabajo</td>
+                                    </tr>
+                                    i++;
+                                }
+
+                            }
+                        </tbody>
+                    </table>
+
+                    <hr />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-2">
+                <div class="d-flex justify-content-center">
+                    @Html.LabelFor(model => model.qna_ini, htmlAttributes: new { @class = "form-label" })
+                </div>
+                @Html.EditorFor(model => model.qna_ini, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.qna_ini, "", new { @class = "text-danger" })
+            </div>
+            <div id="DivFechaFinal" class="col-md-2">
+                <div class="d-flex justify-content-center">
+                    @Html.LabelFor(model => model.qna_fin, htmlAttributes: new { @class = "form-label" })
+                </div>
+                @Html.EditorFor(model => model.qna_fin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.qna_fin, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+            </div>
+
+        </div>
+        <hr />
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <input type="button" value="Guardar" class="btn btn-primary" onclick="confirmaGuardar()" />
+            </div>
+        </div>
+        <hr />
+        <div id="DivDoc" style="visibility:hidden;">
+            <div class="row">
+                <strong>Subir documentos requeridos para iniciar el trámite del movimiento</strong><br />
+                <span class="text-danger">El formato de todos los documentos debe ser .PDF <img src="@Url.Content("~/img/pdf.png")" alt="PDF-logo" width="14px" /></span>
+                <br /><br />
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Solicitud, htmlAttributes: new { @class = "form-label" })
+                    @if (ViewBag.Solicitud != null)
+                    {
+                        <p>
+                            <span class="text-success">Usted ya ha subido una solicitud firmada</span>
+                            <a class="btn btn-xs btn-info" href="@Url.Content("~"+ViewBag.Solicitud)" target="_blank">Ver documento</a>
+                            <br /><small class="text-info">Puede subir otro documento que reemplazará al anterior.</small>
+                        </p>
+                    }
+                    @Html.TextBoxFor(model => model.Solicitud, new { @class = "form-control", type = "file", accept = "application/pdf" })
+                    @Html.ValidationMessageFor(model => model.Solicitud, "", new { @class = "text-danger" })
+
+                </div>
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Ine, htmlAttributes: new { @class = "form-label" })
+                    @if (ViewBag.Solicitud != null)
+                    {
+                        <p>
+                            <span class="text-success">Usted ya ha subido un docuemnto oficial(INE)</span>
+                            <a class="btn btn-xs btn-info" href="@Url.Content("~"+ViewBag.Solicitud)" target="_blank">Ver documento</a>
+                            <br /><small class="text-info">Puede subir otro documento que reemplazará al anterior.</small>
+                        </p>
+                    }
+                    @Html.TextBoxFor(model => model.Ine, new { @class = "form-control", type = "file", accept = "application/pdf" })
+                    @Html.ValidationMessageFor(model => model.Ine, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    }
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+@section scripts {
+    <script>
+
+
+        function confirmaGuardar() {
+
+            var ddlCT = $("#ct").val();
+            var ddlcve_movs = $("#id_cve_mov").val();
+            var ddlmot_mov = $("#id_tipo_mov").val();
+            var ddlEmpleado = $("#id_empleado").val();
+            var id_antiguedad = $("#id_antiguedad").val();
+            let formulario = document.getElementById("Form");
+            var valido = true;
+            if (ddlCT != "") {
+                if (ddlcve_movs != "" && ddlcve_movs != 0) {
+                    if (ddlmot_mov != "" && ddlmot_mov != 0) {
+                        if (ddlEmpleado != "" && ddlEmpleado != 0) {
+                            //verificar que haya seleccionado plazas
+                            var check="No";
+                            $('input[type=checkbox]:checked').each(function () {
+                                check = $(this).prop("id");
+
+                            });
+                            if (check != "No")
+                            {
+
+                                // Obtiene la fecha ingresada por el usuario desde el input
+                                let fechaInicio = new Date(document.getElementById("qna_ini").value);
+                                let fechaFinal = new Date(document.getElementById("qna_fin").value);
+
+                                if (ddlcve_movs != 6)// si no es una baja
+                                {
+
+                                    if (fechaInicio < fechaFinal)
+                                    {
+                                        if (ddlmot_mov == 41) {
+
+                                            alert(id_antiguedad);
+                                            if (id_antiguedad >= 1)
+                                            {
+                                                var fechaInicialMs = fechaInicio.getTime();
+                                                var fechaFinalMs = fechaFinal.getTime();
+                                                var diferencia = fechaFinalMs - fechaInicialMs;
+                                               
+                                                var dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                                               // var dias = fechaFinal.diff(fechaInicio, 'days');
+                                                alert(dias);
+
+                                                if (id_antiguedad == 1)
+                                                {
+                                                    //verifica si tiene 1 año solo pueden pedir 30 dias
+                                                    
+
+                                                    if (dias <= 30)
+                                                    {
+                                                        // Obtiene la fecha de hoy
+                                                        let fechaHoy = new Date();
+                                                        // obtener
+                                                        var dias = $("#dias").val();
+                                                        var reglamentacion = $("#reglamentacion").val();
+                                                        var texto;
+                                                        // Resta 45 días a la fecha de hoy
+
+                                                        fechaHoy.setDate(fechaHoy.getDate() - 45);
+
+                                                        // Verifica si la fecha ingresada por el usuario es menor o igual a la fecha de hoy - 45 días
+                                                        if (fechaInicio <= fechaHoy) {
+                                                            texto = "La fecha de inicio es mayor a " + dias + " días a partir de la fecha de hoy.  ";
+                                                            Swal.fire({
+                                                                title: '¿Desea continuar?',
+                                                                text: texto,
+                                                                icon: 'warning',
+                                                                showCancelButton: true,
+                                                                confirmButtonColor: '#3085d6',
+                                                                cancelButtonColor: '#d33',
+                                                                confirmButtonText: 'Continuar y guardar',
+                                                                cancelButtonText: 'Cambiar información'
+                                                            }).then((result) => {
+                                                                if (result.isConfirmed) {
+                                                                    formulario.submit();
+                                                                }
+                                                            })
+                                                        }
+                                                        else {
+                                                            formulario.submit();
+                                                        }
+                                                    }
+                                                    else {
+                                                        Swal.fire({
+                                                            title: 'La LICENCIA POR ASUNTOS PARTICULARES para este empleado no puede ser mayor a 30 días, cambia la fecha y vuelve a guardar el movimiento ',
+                                                            text: texto,
+                                                            icon: 'warning',
+                                                            showCancelButton: false,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Continuar ',
+
+                                                        }).then((result) => {
+
+                                                        })
+                                                    }
+
+                                                }
+                                                else if (id_antiguedad > 1 && id_antiguedad <= 5)
+                                                {
+                                                    // le hasta 90 dias
+                                                    if (dias <= 90) {
+                                                        // Obtiene la fecha de hoy
+                                                        let fechaHoy = new Date();
+                                                        // obtener
+                                                        var dias = $("#dias").val();
+                                                        var reglamentacion = $("#reglamentacion").val();
+                                                        var texto;
+                                                        // Resta 45 días a la fecha de hoy
+
+                                                        fechaHoy.setDate(fechaHoy.getDate() - 45);
+
+                                                        // Verifica si la fecha ingresada por el usuario es menor o igual a la fecha de hoy - 45 días
+                                                        if (fechaInicio <= fechaHoy) {
+                                                            texto = "La fecha de inicio es mayor a " + dias + " días a partir de la fecha de hoy.  ";
+                                                            Swal.fire({
+                                                                title: '¿Desea continuar?',
+                                                                text: texto,
+                                                                icon: 'warning',
+                                                                showCancelButton: true,
+                                                                confirmButtonColor: '#3085d6',
+                                                                cancelButtonColor: '#d33',
+                                                                confirmButtonText: 'Continuar y guardar',
+                                                                cancelButtonText: 'Cambiar información'
+                                                            }).then((result) => {
+                                                                if (result.isConfirmed) {
+                                                                    formulario.submit();
+                                                                }
+                                                            })
+                                                        }
+                                                        else {
+                                                            formulario.submit();
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        Swal.fire({
+                                                            title: 'La LICENCIA POR ASUNTOS PARTICULARES para este empleado no puede ser mayor a 90 días, cambia la fecha y vuelve a guardar el movimiento ',
+                                                            text: texto,
+                                                            icon: 'warning',
+                                                            showCancelButton: false,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Continuar ',
+
+                                                        }).then((result) => {
+
+                                                        })
+                                                    
+                                                    }
+
+                                                }
+                                                else if (id_antiguedad > 5) {
+                                                    //le tocan 180 dias
+                                                    if (dias <= 180) {
+                                                        // Obtiene la fecha de hoy
+                                                        let fechaHoy = new Date();
+                                                        // obtener
+                                                        var dias = $("#dias").val();
+                                                        var reglamentacion = $("#reglamentacion").val();
+                                                        var texto;
+                                                        // Resta 45 días a la fecha de hoy
+
+                                                        fechaHoy.setDate(fechaHoy.getDate() - 45);
+
+                                                        // Verifica si la fecha ingresada por el usuario es menor o igual a la fecha de hoy - 45 días
+                                                        if (fechaInicio <= fechaHoy) {
+                                                            texto = "La fecha de inicio es mayor a " + dias + " días a partir de la fecha de hoy.  ";
+                                                            Swal.fire({
+                                                                title: '¿Desea continuar?',
+                                                                text: texto,
+                                                                icon: 'warning',
+                                                                showCancelButton: true,
+                                                                confirmButtonColor: '#3085d6',
+                                                                cancelButtonColor: '#d33',
+                                                                confirmButtonText: 'Continuar y guardar',
+                                                                cancelButtonText: 'Cambiar información'
+                                                            }).then((result) => {
+                                                                if (result.isConfirmed) {
+                                                                    formulario.submit();
+                                                                }
+                                                            })
+                                                        }
+                                                        else {
+                                                            formulario.submit();
+                                                        }
+                                                    }
+                                                    else {
+                                                        Swal.fire({
+                                                            title: 'La LICENCIA POR ASUNTOS PARTICULARES para este empleado no puede ser mayor a 180 días, cambia la fecha y vuelve a guardar el movimiento ',
+                                                            text: texto,
+                                                            icon: 'warning',
+                                                            showCancelButton: false,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Continuar ',
+                                                            
+                                                        }).then((result) => {
+
+                                                        })
+                                                    }
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                               
+                                                Swal.fire({
+                                                    title: 'No puede capturar una LICENCIA POR ASUNTOS PARTICULARES porque el empleado no cumple con la antigüedad requerida ',
+                                                    text: texto,
+                                                    icon: 'warning',
+                                                    showCancelButton: false,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Continuar ',
+                                                    cancelButtonText: 'Continuar con otro empleado'
+                                                }).then((result) => {
+                                                  
+                                                })
+                                                
+                                            }
+                                        }
+                                        else {
+
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //la fecha final no puede ser menor a la fecha inicial
+                                        Swal.fire({
+                                            title: 'La fecha final es menor a la fecha inicial, cambia la fecha y vuelve a guardar el movimiento ',
+                                            text: texto,
+                                            icon: 'warning',
+                                            showCancelButton: false,
+                                            confirmButtonColor: '#3085d6',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'Continuar ',
+
+                                        }).then((result) => {
+
+                                        })
+                                    }
+
+                                }
+                                else
+                                {
+                                    formulario.submit();
+                                    //noes una baja y solo debe verificar que la fecha inicial este capturada
+
+                                }
+
+
+
+
+                            }
+                            else
+                            {
+                                Swal.fire({
+                                    title: 'Debe seleccionar al menos una plaza, selecciones la plaza y vuelve a guardar el movimiento ',
+                                    text: texto,
+                                    icon: 'warning',
+                                    showCancelButton: false,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Continuar ',
+
+                                }).then((result) => {
+
+                                })
+                            }
+                        }
+                        else {
+                            Swal.fire({
+                                title: 'Debe seleccionar al menos un empleado, cambie el empledo y vuelve a guardar el movimiento ',
+                                text: texto,
+                                icon: 'warning',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Continuar ',
+
+                            }).then((result) => {
+
+                            })
+                        }
+
+                    }
+                    else {
+                        Swal.fire({
+                            title: 'Debe seleccionar al menos un motivo, cambie el motivo y vuelve a guardar el movimiento ',
+                            text: texto,
+                            icon: 'warning',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Continuar ',
+
+                        }).then((result) => {
+
+                        })
+                    }
+
+                }
+                else {
+                    Swal.fire({
+                        title: 'Debe seleccionar al menos un movimiento, cambie el movimiento y vuelve a guardar el movimiento ',
+                        text: texto,
+                        icon: 'warning',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Continuar ',
+
+                    }).then((result) => {
+
+                    })
+                }
+
+            }
+            else {
+                Swal.fire({
+                    title: 'Debe seleccionar al menos un centro de trabajo, cambie el centro de trabajo y vuelve a guardar el movimiento ',
+                    text: texto,
+                    icon: 'warning',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Continuar ',
+
+                }).then((result) => {
+
+                })
+            }
+ }
+        $(document).ready(function () {
+
+
+              $("#cve_movs").change(function() {
+                var selectedItem = $(this).val();
+                  var ddlMotivos = $("#mot_mov");
+                  $("#DivEmpleado").hide();
+                  $("#TablaPlazas > tbody").empty();//limpia solo los registros del body
+                  $('#id_cve_mov').val(selectedItem);
+                  if (selectedItem == "6" || selectedItem == "7") {
+
+                      $("#DivFechaFinal").hide();
+                  }
+                  else {
+                      $("#DivFechaFinal").show();
+                  }
+                var statesProgress = $("#states-loading-progress");
+                statesProgress.show();
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.Action("_GetMotivos", "Movimientos"))",
+                    data: { "id": selectedItem},
+                    success: function (data) {
+                        ddlMotivos.html('');
+                        ddlMotivos.append($('<option></option>').html("Selecciona el Tipo"));
+                        $.each(data, function(id, option) {
+                            ddlMotivos.append($('<option></option>').val(option.Id).html(option.motivo_mov));
+                        });
+
+                    },
+                    error:function (xhr, ajaxOptions, thrownError){
+                        alert('Error al cargar Lista de motivos.');
+
+                    }
+                });
+              });
+
+            $("#cts").change(function() {
+                var selectedItem = $(this).val();
+                var ddlEmpleados = $("#empleados");
+                $('#ct').val(selectedItem);
+                $("#DivEmpleado").hide();
+                $("#TablaPlazas > tbody").empty();//limpia solo los registros del body
+                  var statesProgress = $("#states-loading-progress");
+                  statesProgress.show();
+                  $.ajax({
+                      cache: false,
+                      type: "GET",
+                      url: "@(Url.Action("_GetEmpleados", "Movimientos"))",
+                      data: { "ct": selectedItem},
+                      success: function (data) {
+                          ddlEmpleados.html('');
+                          ddlEmpleados.append($('<option></option>').html("Selecciona el Empleado"));
+                          $.each(data, function(id, option) {
+                              ddlEmpleados.append($('<option></option>').val(option.Id).html(option.nombre_completo));
+                          });
+
+                      },
+                      error:function (xhr, ajaxOptions, thrownError){
+                          alert('Error al cargar Lista de empleados.');
+
+                      }
+                  });
+                });
+
+            $("#empleados").change(function() {
+                var selectedItem = $(this).val();
+                var ddlCT = $("#cts").val();
+                var ddlcve_movs = $("#cve_movs").val();
+                var ddlmot_mov = $("#mot_mov").val();
+                $('#id_empleado').val(selectedItem);
+                        $("#TablaPlazas > tbody").empty();//limpia solo los registros del body
+                        var statesProgress = $("#states-loading-progress");
+                        statesProgress.show();
+                        $.ajax({
+                            cache: false,
+                            type: "GET",
+                            url: "@(Url.Action("_GetPlazasEmpleado", "Movimientos"))",
+                            data: {
+                                "id": selectedItem,
+                                "ct": ddlCT,
+                                "cve_mot": ddlcve_movs,
+                                "mot_mov":ddlmot_mov,
+                            },
+                            success: function (option) {
+
+
+                                for (let i = 0; i < option.length; i++)
+                                {
+
+                                    $('#id_antiguedad').val(option[i].antiguedad);
+
+                                        if (ddlmot_mov == "31") {
+                                            $("tbody").append($(`
+                                              <tr>
+                                                  <th scope="row">
+                                                      <div class="form-check">
+                                                            <input type="hidden" value="${i}" id="plazas[${i}].index" name="plazas[${i}].index">
+                                                            <input class="form-check-input" type="checkbox" value="${option[i]._Plaza}" id="plazas[${i}].plaza" name="plazas[${i}].plaza" checked='checked'  >
+
+
+                                                      </div>
+                                                  </th>
+                                                  <td>${option[i]._Plaza}</td>
+                                                  <td>${option[i].CTrabajo}</td>
+                                              </tr>
+
+                                          `));
+                                        }
+                                        else {
+                                            $("tbody").append($(`
+                                                 <tr>
+                                                     <th scope="row">
+                                                         <div class="form-check">
+                                                               <input type="hidden" value="${i}" id="plazas[${i}].index" name="plazas[${i}].index">
+                                                               <input class="form-check-input" type="checkbox" value="${option[i]._Plaza}" id="plazas[${i}].plaza" name="plazas[${i}].plaza">
+
+                                                         </div>
+                                                     </th>
+                                                     <td>${option[i]._Plaza}</td>
+                                                     <td>${option[i].CTrabajo}</td>
+                                                 </tr>
+                                             `));
+                                        }
+                                   }
+
+
+
+                            },
+                            error:function (xhr, ajaxOptions, thrownError){
+                                alert('Error al cargar Lista de empleados.');
+
+                            }
+                        });
+            });
+            $("#mot_mov").change(function() {
+               var selectedItem = $(this).val();
+                $('#id_tipo_mov').val(selectedItem);
+                var ddlCT = $("#cts").val();
+                var ddlcve_movs = $("#cve_movs").val();
+                var ddlmot_mov = $("#mot_mov").val();
+                $("#TablaPlazas > tbody").empty();//limpia solo los registros del body
+                if (ddlCT != "Selecciona el CT")
+                {
+                    $("#DivEmpleado").show();
+
+                }
+                else {
+                    $("#DivEmpleado").hide();
+                }
+
+                 $.ajax({
+                         cache: false,
+                         type: "GET",
+                         url: "@(Url.Action("_GetDatosMotivo", "Movimientos"))",
+                     data: {
+                         "cve_mot": ddlcve_movs,
+                         "mot_mov": ddlmot_mov,
+                        },
+                     success: function (data) {
+                         $.each(data, function (id, option) {
+
+                             $("#dias").val(option.Id);
+                             $("#reglamentacion").val(option.motivo_mov);
+
+                         });
+
+
+
+                         },
+                         error:function (xhr, ajaxOptions, thrownError){
+                             alert('Error al obtener información');
+
+                         }
+                  });
+             });
+
+        });
+    </script>
+}
+

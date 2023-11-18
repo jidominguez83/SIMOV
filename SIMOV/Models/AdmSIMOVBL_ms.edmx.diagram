@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6988944aaf704d5bb6415f8d15f9e309" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.app_usuario_objeto" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.mvc_permisos" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.mvc_permisos_opciones" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.mvc_usaurios" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.doc_tipomov_sibl" Width="1.5" PointX="8" PointY="3.375" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.tipo_doc_sibl" Width="1.5" PointX="5.75" PointY="0.75" />
+        <AssociationConnector Association="AdmSIMOVBL_msModel.FK__doc_tipom__id_do__179934F4" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.configuracion_sibl" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.cve_mov" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.motivos_mov" Width="1.5" PointX="10.375" PointY="10.75" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.emp_plaza_pmp" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.hpc_pmp" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.ct_basico" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.empleado_u" Width="1.5" PointX="7.375" PointY="12.625" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.bit_cap_mov_sibl" Width="1.5" PointX="14.625" PointY="2.875" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.documentos_cap_sibl" Width="1.5" PointX="17.625" PointY="4.375" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.plazas_cap_sibl" Width="1.5" PointX="14.625" PointY="9.375" />
+        <AssociationConnector Association="AdmSIMOVBL_msModel.FK_documentos_cap_sibl_doc_tipomov_sibl" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.captura_mov_sibl" Width="1.5" PointX="9.625" PointY="14.75" />
+        <AssociationConnector Association="AdmSIMOVBL_msModel.FK_bit_cap_mov_sibl_captura_mov_sibl" />
+        <AssociationConnector Association="AdmSIMOVBL_msModel.FK_captura_mov_sibl_captura_mov_sibl" />
+        <AssociationConnector Association="AdmSIMOVBL_msModel.FK_captura_mov_sibl_empleado_u" />
+        <AssociationConnector Association="AdmSIMOVBL_msModel.FK_documentos_cap_sibl_captura_mov_sibl" />
+        <AssociationConnector Association="AdmSIMOVBL_msModel.FK_plazas_cap_sibl_captura_mov_sibl" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.Configuraciones" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.categorias_areas" Width="1.5" PointX="8.375" PointY="6.75" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.emp_qna_ing_uid" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.areas" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="AdmSIMOVBL_msModel.tipo_mov_sibl" Width="1.5" PointX="5.75" PointY="6.875" />
+        <AssociationConnector Association="AdmSIMOVBL_msModel.FK_captura_mov_sibl_tipo_mov_sibl" />
+        <AssociationConnector Association="AdmSIMOVBL_msModel.FK__doc_tipom__id_ti__577EAFDF" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

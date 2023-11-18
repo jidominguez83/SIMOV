@@ -1,0 +1,1701 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AdmSIMOVBL_msModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="areas">
+          <Key>
+            <PropertyRef Name="area" />
+          </Key>
+          <Property Name="area" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="char" MaxLength="255" Nullable="false" />
+          <Property Name="descripcion" Type="char" MaxLength="255" Nullable="false" />
+          <Property Name="titular" Type="char" MaxLength="255" Nullable="false" />
+          <Property Name="logoarea" Type="image" />
+          <Property Name="FUP" Type="smallint" Nullable="false" />
+          <Property Name="idsupzona" Type="char" MaxLength="2" />
+          <Property Name="idjefsector" Type="char" MaxLength="2" />
+          <Property Name="rfc" Type="char" MaxLength="13" />
+          <Property Name="firma" Type="image" />
+          <Property Name="activa" Type="bit" />
+        </EntityType>
+        <EntityType Name="bit_cap_mov_sibl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_captura" Type="int" Nullable="false" />
+          <Property Name="estatus_op" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="operacion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="captura_mov_sibl">
+          <Key>
+            <PropertyRef Name="id_captura" />
+          </Key>
+          <Property Name="id_captura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="area" Type="smallint" Nullable="false" />
+          <Property Name="id_tipo_mov" Type="int" Nullable="false" />
+          <Property Name="id_empleado" Type="int" Nullable="false" />
+          <Property Name="rfc" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="ct" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_ini" Type="date" />
+          <Property Name="fecha_fin" Type="date" />
+          <Property Name="fecha_captura" Type="date" />
+          <Property Name="fecha_alerta" Type="date" />
+          <Property Name="fecha_envio" Type="date" />
+          <Property Name="fecha_recibido" Type="date" />
+          <Property Name="fecha_cancelacion" Type="date" />
+          <Property Name="observacion" Type="varchar(max)" />
+          <Property Name="usuario_cap" Type="nvarchar(max)" />
+          <Property Name="estatus" Type="smallint" />
+        </EntityType>
+        <EntityType Name="configuracion_sibl">
+          <Key>
+            <PropertyRef Name="id_configuracion" />
+          </Key>
+          <Property Name="id_configuracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="periodo_abierto" Type="smallint" Nullable="false" />
+          <Property Name="leyenda" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Configuraciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Num_App" Type="int" Nullable="false" />
+          <Property Name="Sistema" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Ciclo_Escolar" Type="int" />
+          <Property Name="Fecha_Apertura" Type="date" />
+          <Property Name="Fecha_Cierre" Type="date" />
+          <Property Name="Titulo" Type="varchar" MaxLength="300" />
+          <Property Name="Leyenda_PC" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="ct_basico">
+          <Key>
+            <PropertyRef Name="ent_fed" />
+            <PropertyRef Name="ct_clasif" />
+            <PropertyRef Name="ct_id" />
+            <PropertyRef Name="ct_secuencial" />
+            <PropertyRef Name="ct_digito_ver" />
+          </Key>
+          <Property Name="ent_fed" Type="smallint" Nullable="false" />
+          <Property Name="ct_clasif" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ct_id" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="ct_secuencial" Type="smallint" Nullable="false" />
+          <Property Name="ct_digito_ver" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="clave_ct" Type="char" MaxLength="10" />
+          <Property Name="ct_nombre" Type="char" MaxLength="115" />
+          <Property Name="ct_dom" Type="char" MaxLength="60" />
+          <Property Name="ct_calle" Type="char" MaxLength="50" />
+          <Property Name="ct_calle1" Type="char" MaxLength="50" />
+          <Property Name="municipio" Type="smallint" Nullable="false" />
+          <Property Name="localidad" Type="smallint" Nullable="false" />
+          <Property Name="ct_cp" Type="char" MaxLength="5" />
+          <Property Name="ct_tel" Type="char" MaxLength="12" />
+          <Property Name="ct_fax" Type="char" MaxLength="12" />
+          <Property Name="ct_nomdir" Type="char" MaxLength="52" />
+          <Property Name="ct_dep_admva" Type="smallint" />
+          <Property Name="ct_dep_norm" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="zona_escolar" Type="smallint" Nullable="false" />
+          <Property Name="ct_depto_se_re" Type="char" MaxLength="2" />
+          <Property Name="ct_sector" Type="smallint" />
+          <Property Name="ct_alm_dis" Type="char" MaxLength="4" />
+          <Property Name="ct_area_geo" Type="char" MaxLength="4" />
+          <Property Name="ct_sosten" Type="smallint" />
+          <Property Name="ct_serv" Type="char" MaxLength="2" />
+          <Property Name="turno" Type="smallint" />
+          <Property Name="ct_cve_inm" Type="char" MaxLength="7" />
+          <Property Name="ct_tip_cor" Type="char" MaxLength="1" />
+          <Property Name="ct_num_cor" Type="char" MaxLength="12" />
+          <Property Name="ct_fec_cor" Type="char" MaxLength="8" />
+          <Property Name="ct_cve_eco" Type="char" MaxLength="10" />
+          <Property Name="ct_fec_fun" Type="char" MaxLength="8" />
+          <Property Name="estatus_ct" Type="smallint" />
+          <Property Name="ct_fec_alt" Type="char" MaxLength="8" />
+          <Property Name="ct_fec_act" Type="char" MaxLength="8" />
+          <Property Name="unidad_resp" Type="char" MaxLength="3" />
+          <Property Name="programa" Type="char" MaxLength="2" />
+          <Property Name="subprograma" Type="char" MaxLength="2" />
+          <Property Name="op" Type="char" MaxLength="1" />
+          <Property Name="rfc" Type="char" MaxLength="13" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="unidad_dist_cheque" Type="smallint" />
+          <Property Name="operador" Type="char" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="cve_mov">
+          <Key>
+            <PropertyRef Name="cve_mov" />
+          </Key>
+          <Property Name="u_version" Type="char" MaxLength="1" />
+          <Property Name="cve_mov" Type="smallint" Nullable="false" />
+          <Property Name="descripcion" Type="char" MaxLength="60" Nullable="false" />
+          <Property Name="tabla_mov" Type="char" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="doc_tipomov_sibl">
+          <Key>
+            <PropertyRef Name="id_doc_tipdoc" />
+          </Key>
+          <Property Name="id_doc_tipdoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_documento" Type="int" Nullable="false" />
+          <Property Name="id_tipo" Type="int" Nullable="false" />
+          <Property Name="estatus" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="documentos_cap_sibl">
+          <Key>
+            <PropertyRef Name="id_doc_sibl" />
+          </Key>
+          <Property Name="id_doc_sibl" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_captura" Type="int" Nullable="false" />
+          <Property Name="id_doc_tipdoc" Type="int" Nullable="false" />
+          <Property Name="path" Type="varchar(max)" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="estatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empleado_u">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rfc" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="paterno" Type="char" MaxLength="40" />
+          <Property Name="materno" Type="char" MaxLength="40" />
+          <Property Name="nom" Type="char" MaxLength="60" />
+          <Property Name="nom_emp" Type="char" MaxLength="60" Nullable="false" />
+          <Property Name="sexo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="edo_civil" Type="smallint" Nullable="false" />
+          <Property Name="fecha_nac" Type="datetime" />
+          <Property Name="edo_nac" Type="smallint" Nullable="false" />
+          <Property Name="lug_nac" Type="char" MaxLength="60" />
+          <Property Name="nombre_padre" Type="char" MaxLength="60" />
+          <Property Name="nombre_madre" Type="char" MaxLength="60" />
+          <Property Name="acta_no" Type="int" />
+          <Property Name="anio" Type="int" />
+          <Property Name="foja" Type="int" />
+          <Property Name="libro" Type="int" />
+          <Property Name="cartilla_smn" Type="char" MaxLength="10" />
+          <Property Name="clase" Type="smallint" />
+          <Property Name="estatus_cartilla" Type="char" MaxLength="1" />
+          <Property Name="nombre_esposo_a" Type="char" MaxLength="60" />
+          <Property Name="lugar_filiacion" Type="char" MaxLength="40" />
+          <Property Name="fecha_filiacion" Type="datetime" />
+          <Property Name="fecha_examen" Type="datetime" />
+          <Property Name="qna_ini" Type="int" />
+          <Property Name="act_inact" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ban_pago" Type="smallint" Nullable="false" />
+          <Property Name="mot_baja" Type="smallint" Nullable="false" />
+          <Property Name="qna_baja" Type="int" Nullable="false" />
+          <Property Name="qna_ing_gob" Type="int" />
+          <Property Name="qna_ing_sep" Type="int" />
+          <Property Name="qna_ing_hon" Type="int" />
+          <Property Name="qna_ing_pro" Type="int" />
+          <Property Name="niv_academico" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="escuela_egreso" Type="char" MaxLength="60" />
+          <Property Name="anio_egreso" Type="smallint" />
+          <Property Name="titulado" Type="char" MaxLength="1" />
+          <Property Name="tipo_tit" Type="smallint" Nullable="false" />
+          <Property Name="tipo_lic" Type="smallint" Nullable="false" />
+          <Property Name="num_tit" Type="int" Nullable="false" />
+          <Property Name="num_lic" Type="int" Nullable="false" />
+          <Property Name="emp_cta_sar" Type="char" MaxLength="18" />
+          <Property Name="acumulado_horas_42" Type="float" Nullable="false" />
+          <Property Name="acumulado_horas_48" Type="float" Nullable="false" />
+          <Property Name="emp_dom" Type="char" MaxLength="60" />
+          <Property Name="emp_dom_col" Type="char" MaxLength="60" />
+          <Property Name="emp_dom_pob" Type="char" MaxLength="60" />
+          <Property Name="emp_dom_tel" Type="char" MaxLength="20" />
+          <Property Name="emp_dom_cel" Type="char" MaxLength="20" />
+          <Property Name="emp_dom_cp" Type="char" MaxLength="5" />
+          <Property Name="emp_dom_calle" Type="char" MaxLength="30" />
+          <Property Name="emp_dom_num" Type="char" MaxLength="10" />
+          <Property Name="emp_dom_numint" Type="char" MaxLength="15" />
+          <Property Name="emp_dom_mun" Type="smallint" />
+          <Property Name="emp_dom_loc" Type="smallint" />
+          <Property Name="emp_cta_bancaria" Type="char" MaxLength="18" />
+          <Property Name="bco_admdor" Type="smallint" Nullable="false" />
+          <Property Name="bco_plaza" Type="smallint" Nullable="false" />
+          <Property Name="fecha_def" Type="datetime" />
+          <Property Name="creacion" Type="datetime" Nullable="false" />
+          <Property Name="curp" Type="char" MaxLength="18" />
+          <Property Name="email" Type="char" MaxLength="50" />
+          <Property Name="usuario" Type="char" MaxLength="30" />
+          <Property Name="senial" Type="char" MaxLength="1" />
+          <Property Name="edocivil" Type="char" MaxLength="20" />
+          <Property Name="nivacademico" Type="char" MaxLength="20" />
+          <Property Name="efreside" Type="char" MaxLength="3" />
+          <Property Name="edad" Type="smallint" />
+          <Property Name="sistema" Type="bit" Nullable="false" />
+          <Property Name="id_pais" Type="char" MaxLength="3" />
+          <Property Name="mun_nac" Type="smallint" />
+          <Property Name="emp_dom_ent" Type="smallint" />
+        </EntityType>
+        <EntityType Name="motivos_mov">
+          <Key>
+            <PropertyRef Name="mot_mov" />
+          </Key>
+          <Property Name="u_version" Type="char" MaxLength="1" />
+          <Property Name="mot_mov" Type="smallint" Nullable="false" />
+          <Property Name="estatus_lec_hpe" Type="char" MaxLength="30" />
+          <Property Name="estatus_esc_hpe" Type="char" MaxLength="30" />
+          <Property Name="estatus_cie_hpe" Type="char" MaxLength="30" />
+          <Property Name="estatus_lec_ep" Type="char" MaxLength="30" />
+          <Property Name="estatus_esc_ep" Type="char" MaxLength="30" />
+          <Property Name="estatus_cie_ep" Type="char" MaxLength="30" />
+          <Property Name="descripcion" Type="char" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="plazas_cap_sibl">
+          <Key>
+            <PropertyRef Name="id_plaza_cap" />
+          </Key>
+          <Property Name="id_plaza_cap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_captura" Type="int" Nullable="false" />
+          <Property Name="plaza" Type="char" MaxLength="33" Nullable="false" />
+          <Property Name="fecha_captura" Type="date" />
+          <Property Name="fecha_cancelacion" Type="date" />
+          <Property Name="estatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_doc_sibl">
+          <Key>
+            <PropertyRef Name="id_documento" />
+          </Key>
+          <Property Name="id_documento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="documento" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_mov_sibl">
+          <Key>
+            <PropertyRef Name="id_tipo" />
+          </Key>
+          <Property Name="id_tipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cve_mov" Type="smallint" Nullable="false" />
+          <Property Name="mot_movcap" Type="smallint" Nullable="false" />
+          <Property Name="dias_soliditud" Type="smallint" />
+          <Property Name="personal_con_derecho" Type="varchar(max)" Nullable="false" />
+          <Property Name="requisitos" Type="varchar(max)" />
+          <Property Name="duracion" Type="varchar(max)" Nullable="false" />
+          <Property Name="prorroga" Type="nvarchar" MaxLength="100" />
+          <Property Name="base_legal" Type="varchar(max)" Nullable="false" />
+          <Property Name="doc_solicitud" Type="varchar(max)" Nullable="false" />
+          <Property Name="all_plazas" Type="smallint" Nullable="false" />
+          <Property Name="estatus" Type="smallint" Nullable="false" />
+          <Property Name="nombre" Type="varchar(max)" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'mpsege.dbo.app_usuario_objeto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="app_usuario_objeto">
+          <Key>
+            <PropertyRef Name="clave_app" />
+            <PropertyRef Name="clave_mod" />
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="tipo_objeto" />
+          </Key>
+          <Property Name="clave_app" Type="int" Nullable="false" />
+          <Property Name="clave_mod" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="tipo_objeto" Type="tinyint" Nullable="false" />
+          <Property Name="tipo_usuario" Type="int" />
+          <Property Name="Obj_Json" Type="varchar(max)" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'mpsege.dbo.categorias_areas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="categorias_areas">
+          <Key>
+            <PropertyRef Name="unidad" />
+            <PropertyRef Name="subunidad" />
+            <PropertyRef Name="cat_puesto" />
+          </Key>
+          <Property Name="unidad" Type="smallint" Nullable="false" />
+          <Property Name="subunidad" Type="smallint" Nullable="false" />
+          <Property Name="cat_puesto" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="nivel_educativo" Type="varchar" MaxLength="500" />
+          <Property Name="area" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="500" />
+          <Property Name="area_ant" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'mpsege.dbo.emp_plaza_pmp' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="emp_plaza_pmp">
+          <Key>
+            <PropertyRef Name="rfc" />
+            <PropertyRef Name="cod_pago" />
+            <PropertyRef Name="unidad" />
+            <PropertyRef Name="subunidad" />
+            <PropertyRef Name="cat_puesto" />
+            <PropertyRef Name="horas" />
+            <PropertyRef Name="cons_plaza" />
+            <PropertyRef Name="estatus_plaza" />
+            <PropertyRef Name="qna_ini" />
+            <PropertyRef Name="qna_fin" />
+            <PropertyRef Name="mot_mov" />
+            <PropertyRef Name="nivel_sueldo" />
+          </Key>
+          <Property Name="rfc" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="cod_pago" Type="smallint" Nullable="false" />
+          <Property Name="unidad" Type="smallint" Nullable="false" />
+          <Property Name="subunidad" Type="smallint" Nullable="false" />
+          <Property Name="cat_puesto" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="horas" Type="float" Nullable="false" />
+          <Property Name="cons_plaza" Type="int" Nullable="false" />
+          <Property Name="estatus_plaza" Type="smallint" Nullable="false" />
+          <Property Name="qna_ini" Type="int" Nullable="false" />
+          <Property Name="qna_fin" Type="int" Nullable="false" />
+          <Property Name="mot_mov" Type="smallint" Nullable="false" />
+          <Property Name="nivel_sueldo" Type="smallint" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'mpsege.dbo.emp_qna_ing_uid' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="emp_qna_ing_uid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="qna_ing" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'mpsege.dbo.hpc_pmp' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="hpc_pmp">
+          <Key>
+            <PropertyRef Name="cod_pago" />
+            <PropertyRef Name="unidad" />
+            <PropertyRef Name="subunidad" />
+            <PropertyRef Name="cat_puesto" />
+            <PropertyRef Name="horas" />
+            <PropertyRef Name="cons_plaza" />
+            <PropertyRef Name="ent_fed" />
+            <PropertyRef Name="ct_clasif" />
+            <PropertyRef Name="ct_id" />
+            <PropertyRef Name="ct_secuencial" />
+            <PropertyRef Name="ct_digito_ver" />
+            <PropertyRef Name="qna_fin" />
+            <PropertyRef Name="qna_ini" />
+            <PropertyRef Name="num_doc" />
+          </Key>
+          <Property Name="u_version" Type="char" MaxLength="1" />
+          <Property Name="cod_pago" Type="smallint" Nullable="false" />
+          <Property Name="unidad" Type="smallint" Nullable="false" />
+          <Property Name="subunidad" Type="smallint" Nullable="false" />
+          <Property Name="cat_puesto" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="horas" Type="float" Nullable="false" />
+          <Property Name="cons_plaza" Type="int" Nullable="false" />
+          <Property Name="ent_fed" Type="smallint" Nullable="false" />
+          <Property Name="ct_clasif" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ct_id" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="ct_secuencial" Type="smallint" Nullable="false" />
+          <Property Name="ct_digito_ver" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="qna_fin" Type="int" Nullable="false" />
+          <Property Name="qna_ini" Type="int" Nullable="false" />
+          <Property Name="num_doc" Type="int" Nullable="false" />
+          <Property Name="fec_doc" Type="datetime" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'mpsege.dbo.mvc_permisos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="mvc_permisos">
+          <Key>
+            <PropertyRef Name="clave_app" />
+            <PropertyRef Name="clave_mod" />
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="permisos" />
+          </Key>
+          <Property Name="clave_app" Type="int" Nullable="false" />
+          <Property Name="clave_mod" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="permisos" Type="char" MaxLength="500" Nullable="false" />
+          <Property Name="valor" Type="char" MaxLength="100" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'mpsege.dbo.mvc_permisos_opciones' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="mvc_permisos_opciones">
+          <Key>
+            <PropertyRef Name="clave_app" />
+            <PropertyRef Name="clave_mod" />
+            <PropertyRef Name="opc" />
+            <PropertyRef Name="usuario" />
+          </Key>
+          <Property Name="clave_app" Type="int" Nullable="false" />
+          <Property Name="clave_mod" Type="int" Nullable="false" />
+          <Property Name="opc" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="usuario" Type="char" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'mpsege.dbo.mvc_usaurios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="mvc_usaurios">
+          <Key>
+            <PropertyRef Name="usuario" />
+          </Key>
+          <Property Name="usuario" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="curp" Type="char" MaxLength="18" />
+          <Property Name="nombre" Type="char" MaxLength="150" />
+        </EntityType>
+        <Association Name="FK__doc_tipom__id_do__568A8BA6">
+          <End Role="tipo_doc_sibl" Type="Self.tipo_doc_sibl" Multiplicity="1" />
+          <End Role="doc_tipomov_sibl" Type="Self.doc_tipomov_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_doc_sibl">
+              <PropertyRef Name="id_documento" />
+            </Principal>
+            <Dependent Role="doc_tipomov_sibl">
+              <PropertyRef Name="id_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__doc_tipom__id_ti__577EAFDF">
+          <End Role="tipo_mov_sibl" Type="Self.tipo_mov_sibl" Multiplicity="1" />
+          <End Role="doc_tipomov_sibl" Type="Self.doc_tipomov_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_mov_sibl">
+              <PropertyRef Name="id_tipo" />
+            </Principal>
+            <Dependent Role="doc_tipomov_sibl">
+              <PropertyRef Name="id_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bit_cap_mov_sibl_captura_mov_sibl">
+          <End Role="captura_mov_sibl" Type="Self.captura_mov_sibl" Multiplicity="1" />
+          <End Role="bit_cap_mov_sibl" Type="Self.bit_cap_mov_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="captura_mov_sibl">
+              <PropertyRef Name="id_captura" />
+            </Principal>
+            <Dependent Role="bit_cap_mov_sibl">
+              <PropertyRef Name="id_captura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_captura_mov_sibl_captura_mov_sibl">
+          <End Role="captura_mov_sibl" Type="Self.captura_mov_sibl" Multiplicity="1" />
+          <End Role="captura_mov_sibl1" Type="Self.captura_mov_sibl" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="captura_mov_sibl">
+              <PropertyRef Name="id_captura" />
+            </Principal>
+            <Dependent Role="captura_mov_sibl1">
+              <PropertyRef Name="id_captura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_captura_mov_sibl_empleado_u">
+          <End Role="empleado_u" Type="Self.empleado_u" Multiplicity="1" />
+          <End Role="captura_mov_sibl" Type="Self.captura_mov_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado_u">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="captura_mov_sibl">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_captura_mov_sibl_tipo_mov_sibl">
+          <End Role="tipo_mov_sibl" Type="Self.tipo_mov_sibl" Multiplicity="1" />
+          <End Role="captura_mov_sibl" Type="Self.captura_mov_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_mov_sibl">
+              <PropertyRef Name="id_tipo" />
+            </Principal>
+            <Dependent Role="captura_mov_sibl">
+              <PropertyRef Name="id_tipo_mov" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_documentos_cap_sibl_captura_mov_sibl">
+          <End Role="captura_mov_sibl" Type="Self.captura_mov_sibl" Multiplicity="1" />
+          <End Role="documentos_cap_sibl" Type="Self.documentos_cap_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="captura_mov_sibl">
+              <PropertyRef Name="id_captura" />
+            </Principal>
+            <Dependent Role="documentos_cap_sibl">
+              <PropertyRef Name="id_captura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_documentos_cap_sibl_doc_tipomov_sibl">
+          <End Role="doc_tipomov_sibl" Type="Self.doc_tipomov_sibl" Multiplicity="1" />
+          <End Role="documentos_cap_sibl" Type="Self.documentos_cap_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doc_tipomov_sibl">
+              <PropertyRef Name="id_doc_tipdoc" />
+            </Principal>
+            <Dependent Role="documentos_cap_sibl">
+              <PropertyRef Name="id_doc_tipdoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_plazas_cap_sibl_captura_mov_sibl">
+          <End Role="captura_mov_sibl" Type="Self.captura_mov_sibl" Multiplicity="1" />
+          <End Role="plazas_cap_sibl" Type="Self.plazas_cap_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="captura_mov_sibl">
+              <PropertyRef Name="id_captura" />
+            </Principal>
+            <Dependent Role="plazas_cap_sibl">
+              <PropertyRef Name="id_captura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="concat_ct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="ent_fed" Type="smallint" Mode="In" />
+          <Parameter Name="ct_clasif" Type="char" Mode="In" />
+          <Parameter Name="ct_id" Type="char" Mode="In" />
+          <Parameter Name="ct_secuencial" Type="smallint" Mode="In" />
+          <Parameter Name="ct_digito_ver" Type="char" Mode="In" />
+        </Function>
+        <EntityContainer Name="AdmSIMOVBL_msModelStoreContainer">
+          <EntitySet Name="areas" EntityType="Self.areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bit_cap_mov_sibl" EntityType="Self.bit_cap_mov_sibl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="captura_mov_sibl" EntityType="Self.captura_mov_sibl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="configuracion_sibl" EntityType="Self.configuracion_sibl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configuraciones" EntityType="Self.Configuraciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ct_basico" EntityType="Self.ct_basico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cve_mov" EntityType="Self.cve_mov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="doc_tipomov_sibl" EntityType="Self.doc_tipomov_sibl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="documentos_cap_sibl" EntityType="Self.documentos_cap_sibl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empleado_u" EntityType="Self.empleado_u" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="motivos_mov" EntityType="Self.motivos_mov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="plazas_cap_sibl" EntityType="Self.plazas_cap_sibl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_doc_sibl" EntityType="Self.tipo_doc_sibl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_mov_sibl" EntityType="Self.tipo_mov_sibl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="app_usuario_objeto" EntityType="Self.app_usuario_objeto" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [app_usuario_objeto].[clave_app] AS [clave_app], 
+    [app_usuario_objeto].[clave_mod] AS [clave_mod], 
+    [app_usuario_objeto].[usuario] AS [usuario], 
+    [app_usuario_objeto].[tipo_objeto] AS [tipo_objeto], 
+    [app_usuario_objeto].[tipo_usuario] AS [tipo_usuario], 
+    [app_usuario_objeto].[Obj_Json] AS [Obj_Json]
+    FROM [dbo].[app_usuario_objeto] AS [app_usuario_objeto]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="categorias_areas" EntityType="Self.categorias_areas" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [categorias_areas].[unidad] AS [unidad], 
+    [categorias_areas].[subunidad] AS [subunidad], 
+    [categorias_areas].[cat_puesto] AS [cat_puesto], 
+    [categorias_areas].[nivel_educativo] AS [nivel_educativo], 
+    [categorias_areas].[area] AS [area], 
+    [categorias_areas].[nombre] AS [nombre], 
+    [categorias_areas].[area_ant] AS [area_ant]
+    FROM [dbo].[categorias_areas] AS [categorias_areas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="emp_plaza_pmp" EntityType="Self.emp_plaza_pmp" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [emp_plaza_pmp].[rfc] AS [rfc], 
+    [emp_plaza_pmp].[cod_pago] AS [cod_pago], 
+    [emp_plaza_pmp].[unidad] AS [unidad], 
+    [emp_plaza_pmp].[subunidad] AS [subunidad], 
+    [emp_plaza_pmp].[cat_puesto] AS [cat_puesto], 
+    [emp_plaza_pmp].[horas] AS [horas], 
+    [emp_plaza_pmp].[cons_plaza] AS [cons_plaza], 
+    [emp_plaza_pmp].[estatus_plaza] AS [estatus_plaza], 
+    [emp_plaza_pmp].[qna_ini] AS [qna_ini], 
+    [emp_plaza_pmp].[qna_fin] AS [qna_fin], 
+    [emp_plaza_pmp].[mot_mov] AS [mot_mov], 
+    [emp_plaza_pmp].[nivel_sueldo] AS [nivel_sueldo]
+    FROM [dbo].[emp_plaza_pmp] AS [emp_plaza_pmp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="emp_qna_ing_uid" EntityType="Self.emp_qna_ing_uid" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [emp_qna_ing_uid].[id] AS [id], 
+    [emp_qna_ing_uid].[qna_ing] AS [qna_ing]
+    FROM [dbo].[emp_qna_ing_uid] AS [emp_qna_ing_uid]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="hpc_pmp" EntityType="Self.hpc_pmp" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [hpc_pmp].[u_version] AS [u_version], 
+    [hpc_pmp].[cod_pago] AS [cod_pago], 
+    [hpc_pmp].[unidad] AS [unidad], 
+    [hpc_pmp].[subunidad] AS [subunidad], 
+    [hpc_pmp].[cat_puesto] AS [cat_puesto], 
+    [hpc_pmp].[horas] AS [horas], 
+    [hpc_pmp].[cons_plaza] AS [cons_plaza], 
+    [hpc_pmp].[ent_fed] AS [ent_fed], 
+    [hpc_pmp].[ct_clasif] AS [ct_clasif], 
+    [hpc_pmp].[ct_id] AS [ct_id], 
+    [hpc_pmp].[ct_secuencial] AS [ct_secuencial], 
+    [hpc_pmp].[ct_digito_ver] AS [ct_digito_ver], 
+    [hpc_pmp].[qna_fin] AS [qna_fin], 
+    [hpc_pmp].[qna_ini] AS [qna_ini], 
+    [hpc_pmp].[num_doc] AS [num_doc], 
+    [hpc_pmp].[fec_doc] AS [fec_doc]
+    FROM [dbo].[hpc_pmp] AS [hpc_pmp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="mvc_permisos" EntityType="Self.mvc_permisos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [mvc_permisos].[clave_app] AS [clave_app], 
+    [mvc_permisos].[clave_mod] AS [clave_mod], 
+    [mvc_permisos].[usuario] AS [usuario], 
+    [mvc_permisos].[permisos] AS [permisos], 
+    [mvc_permisos].[valor] AS [valor]
+    FROM [dbo].[mvc_permisos] AS [mvc_permisos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="mvc_permisos_opciones" EntityType="Self.mvc_permisos_opciones" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [mvc_permisos_opciones].[clave_app] AS [clave_app], 
+    [mvc_permisos_opciones].[clave_mod] AS [clave_mod], 
+    [mvc_permisos_opciones].[opc] AS [opc], 
+    [mvc_permisos_opciones].[usuario] AS [usuario]
+    FROM [dbo].[mvc_permisos_opciones] AS [mvc_permisos_opciones]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="mvc_usaurios" EntityType="Self.mvc_usaurios" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [mvc_usaurios].[usuario] AS [usuario], 
+    [mvc_usaurios].[curp] AS [curp], 
+    [mvc_usaurios].[nombre] AS [nombre]
+    FROM [dbo].[mvc_usaurios] AS [mvc_usaurios]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__doc_tipom__id_do__568A8BA6" Association="Self.FK__doc_tipom__id_do__568A8BA6">
+            <End Role="tipo_doc_sibl" EntitySet="tipo_doc_sibl" />
+            <End Role="doc_tipomov_sibl" EntitySet="doc_tipomov_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__doc_tipom__id_ti__577EAFDF" Association="Self.FK__doc_tipom__id_ti__577EAFDF">
+            <End Role="tipo_mov_sibl" EntitySet="tipo_mov_sibl" />
+            <End Role="doc_tipomov_sibl" EntitySet="doc_tipomov_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bit_cap_mov_sibl_captura_mov_sibl" Association="Self.FK_bit_cap_mov_sibl_captura_mov_sibl">
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+            <End Role="bit_cap_mov_sibl" EntitySet="bit_cap_mov_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_captura_mov_sibl_captura_mov_sibl" Association="Self.FK_captura_mov_sibl_captura_mov_sibl">
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+            <End Role="captura_mov_sibl1" EntitySet="captura_mov_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_captura_mov_sibl_empleado_u" Association="Self.FK_captura_mov_sibl_empleado_u">
+            <End Role="empleado_u" EntitySet="empleado_u" />
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_captura_mov_sibl_tipo_mov_sibl" Association="Self.FK_captura_mov_sibl_tipo_mov_sibl">
+            <End Role="tipo_mov_sibl" EntitySet="tipo_mov_sibl" />
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_documentos_cap_sibl_captura_mov_sibl" Association="Self.FK_documentos_cap_sibl_captura_mov_sibl">
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+            <End Role="documentos_cap_sibl" EntitySet="documentos_cap_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_documentos_cap_sibl_doc_tipomov_sibl" Association="Self.FK_documentos_cap_sibl_doc_tipomov_sibl">
+            <End Role="doc_tipomov_sibl" EntitySet="doc_tipomov_sibl" />
+            <End Role="documentos_cap_sibl" EntitySet="documentos_cap_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_plazas_cap_sibl_captura_mov_sibl" Association="Self.FK_plazas_cap_sibl_captura_mov_sibl">
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+            <End Role="plazas_cap_sibl" EntitySet="plazas_cap_sibl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AdmSIMOVBL_msModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="app_usuario_objeto">
+          <Key>
+            <PropertyRef Name="clave_app" />
+            <PropertyRef Name="clave_mod" />
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="tipo_objeto" />
+          </Key>
+          <Property Name="clave_app" Type="Int32" Nullable="false" />
+          <Property Name="clave_mod" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tipo_objeto" Type="Byte" Nullable="false" />
+          <Property Name="tipo_usuario" Type="Int32" />
+          <Property Name="Obj_Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mvc_permisos">
+          <Key>
+            <PropertyRef Name="clave_app" />
+            <PropertyRef Name="clave_mod" />
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="permisos" />
+          </Key>
+          <Property Name="clave_app" Type="Int32" Nullable="false" />
+          <Property Name="clave_mod" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="permisos" Type="String" MaxLength="500" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="valor" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mvc_permisos_opciones">
+          <Key>
+            <PropertyRef Name="clave_app" />
+            <PropertyRef Name="clave_mod" />
+            <PropertyRef Name="opc" />
+            <PropertyRef Name="usuario" />
+          </Key>
+          <Property Name="clave_app" Type="Int32" Nullable="false" />
+          <Property Name="clave_mod" Type="Int32" Nullable="false" />
+          <Property Name="opc" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="AdmSIMOVBL_msEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="app_usuario_objeto" EntityType="Self.app_usuario_objeto" />
+          <EntitySet Name="mvc_permisos" EntityType="Self.mvc_permisos" />
+          <EntitySet Name="mvc_permisos_opciones" EntityType="Self.mvc_permisos_opciones" />
+          <EntitySet Name="mvc_usaurios" EntityType="AdmSIMOVBL_msModel.mvc_usaurios" />
+          <EntitySet Name="doc_tipomov_sibl" EntityType="AdmSIMOVBL_msModel.doc_tipomov_sibl" />
+          <EntitySet Name="tipo_doc_sibl" EntityType="AdmSIMOVBL_msModel.tipo_doc_sibl" />
+          <AssociationSet Name="FK__doc_tipom__id_do__179934F4" Association="AdmSIMOVBL_msModel.FK__doc_tipom__id_do__179934F4">
+            <End Role="tipo_doc_sibl" EntitySet="tipo_doc_sibl" />
+            <End Role="doc_tipomov_sibl" EntitySet="doc_tipomov_sibl" />
+          </AssociationSet>
+          <EntitySet Name="configuracion_sibl" EntityType="AdmSIMOVBL_msModel.configuracion_sibl" />
+          <EntitySet Name="cve_mov" EntityType="AdmSIMOVBL_msModel.cve_mov" />
+          <EntitySet Name="motivos_mov" EntityType="AdmSIMOVBL_msModel.motivos_mov" />
+          <EntitySet Name="emp_plaza_pmp" EntityType="AdmSIMOVBL_msModel.emp_plaza_pmp" />
+          <EntitySet Name="hpc_pmp" EntityType="AdmSIMOVBL_msModel.hpc_pmp" />
+          <EntitySet Name="ct_basico" EntityType="AdmSIMOVBL_msModel.ct_basico" />
+          <EntitySet Name="empleado_u" EntityType="AdmSIMOVBL_msModel.empleado_u" />
+          <EntitySet Name="bit_cap_mov_sibl" EntityType="AdmSIMOVBL_msModel.bit_cap_mov_sibl" />
+          <EntitySet Name="documentos_cap_sibl" EntityType="AdmSIMOVBL_msModel.documentos_cap_sibl" />
+          <EntitySet Name="plazas_cap_sibl" EntityType="AdmSIMOVBL_msModel.plazas_cap_sibl" />
+          <AssociationSet Name="FK_documentos_cap_sibl_doc_tipomov_sibl" Association="AdmSIMOVBL_msModel.FK_documentos_cap_sibl_doc_tipomov_sibl">
+            <End Role="doc_tipomov_sibl" EntitySet="doc_tipomov_sibl" />
+            <End Role="documentos_cap_sibl" EntitySet="documentos_cap_sibl" />
+          </AssociationSet>
+          <EntitySet Name="captura_mov_sibl" EntityType="AdmSIMOVBL_msModel.captura_mov_sibl" />
+          <AssociationSet Name="FK_bit_cap_mov_sibl_captura_mov_sibl" Association="AdmSIMOVBL_msModel.FK_bit_cap_mov_sibl_captura_mov_sibl">
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+            <End Role="bit_cap_mov_sibl" EntitySet="bit_cap_mov_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_captura_mov_sibl_captura_mov_sibl" Association="AdmSIMOVBL_msModel.FK_captura_mov_sibl_captura_mov_sibl">
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+            <End Role="captura_mov_sibl1" EntitySet="captura_mov_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_captura_mov_sibl_empleado_u" Association="AdmSIMOVBL_msModel.FK_captura_mov_sibl_empleado_u">
+            <End Role="empleado_u" EntitySet="empleado_u" />
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_documentos_cap_sibl_captura_mov_sibl" Association="AdmSIMOVBL_msModel.FK_documentos_cap_sibl_captura_mov_sibl">
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+            <End Role="documentos_cap_sibl" EntitySet="documentos_cap_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_plazas_cap_sibl_captura_mov_sibl" Association="AdmSIMOVBL_msModel.FK_plazas_cap_sibl_captura_mov_sibl">
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+            <End Role="plazas_cap_sibl" EntitySet="plazas_cap_sibl" />
+          </AssociationSet>
+          <EntitySet Name="Configuraciones" EntityType="AdmSIMOVBL_msModel.Configuraciones" />
+          <EntitySet Name="categorias_areas" EntityType="AdmSIMOVBL_msModel.categorias_areas" />
+          <EntitySet Name="emp_qna_ing_uid" EntityType="AdmSIMOVBL_msModel.emp_qna_ing_uid" />
+          <EntitySet Name="areas" EntityType="AdmSIMOVBL_msModel.areas" />
+          <EntitySet Name="tipo_mov_sibl" EntityType="AdmSIMOVBL_msModel.tipo_mov_sibl" />
+          <AssociationSet Name="FK_captura_mov_sibl_tipo_mov_sibl" Association="AdmSIMOVBL_msModel.FK_captura_mov_sibl_tipo_mov_sibl">
+            <End Role="tipo_mov_sibl" EntitySet="tipo_mov_sibl" />
+            <End Role="captura_mov_sibl" EntitySet="captura_mov_sibl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__doc_tipom__id_ti__577EAFDF" Association="AdmSIMOVBL_msModel.FK__doc_tipom__id_ti__577EAFDF">
+            <End Role="tipo_mov_sibl" EntitySet="tipo_mov_sibl" />
+            <End Role="doc_tipomov_sibl" EntitySet="doc_tipomov_sibl" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="mvc_usaurios">
+          <Key>
+            <PropertyRef Name="usuario" />
+          </Key>
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="curp" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="doc_tipomov_sibl">
+          <Key>
+            <PropertyRef Name="id_doc_tipdoc" />
+          </Key>
+          <Property Name="id_doc_tipdoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_documento" Type="Int32" Nullable="false" />
+          <Property Name="id_tipo" Type="Int32" Nullable="false" />
+          <Property Name="estatus" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="tipo_doc_sibl" Relationship="AdmSIMOVBL_msModel.FK__doc_tipom__id_do__179934F4" FromRole="doc_tipomov_sibl" ToRole="tipo_doc_sibl" />
+          <NavigationProperty Name="documentos_cap_sibl" Relationship="AdmSIMOVBL_msModel.FK_documentos_cap_sibl_doc_tipomov_sibl" FromRole="doc_tipomov_sibl" ToRole="documentos_cap_sibl" />
+          <NavigationProperty Name="tipo_mov_sibl" Relationship="AdmSIMOVBL_msModel.FK__doc_tipom__id_ti__577EAFDF" FromRole="doc_tipomov_sibl" ToRole="tipo_mov_sibl" />
+        </EntityType>
+        <EntityType Name="tipo_doc_sibl">
+          <Key>
+            <PropertyRef Name="id_documento" />
+          </Key>
+          <Property Name="id_documento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="documento" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="doc_tipomov_sibl" Relationship="AdmSIMOVBL_msModel.FK__doc_tipom__id_do__179934F4" FromRole="tipo_doc_sibl" ToRole="doc_tipomov_sibl" />
+        </EntityType>
+        <Association Name="FK__doc_tipom__id_do__179934F4">
+          <End Type="AdmSIMOVBL_msModel.tipo_doc_sibl" Role="tipo_doc_sibl" Multiplicity="1" />
+          <End Type="AdmSIMOVBL_msModel.doc_tipomov_sibl" Role="doc_tipomov_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_doc_sibl">
+              <PropertyRef Name="id_documento" />
+            </Principal>
+            <Dependent Role="doc_tipomov_sibl">
+              <PropertyRef Name="id_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="configuracion_sibl">
+          <Key>
+            <PropertyRef Name="id_configuracion" />
+          </Key>
+          <Property Name="id_configuracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="periodo_abierto" Type="Int16" Nullable="false" />
+          <Property Name="leyenda" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cve_mov">
+          <Key>
+            <PropertyRef Name="cve_mov1" />
+          </Key>
+          <Property Name="u_version" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="cve_mov1" Type="Int16" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="tabla_mov" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="motivos_mov">
+          <Key>
+            <PropertyRef Name="mot_mov" />
+          </Key>
+          <Property Name="u_version" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="mot_mov" Type="Int16" Nullable="false" />
+          <Property Name="estatus_lec_hpe" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="estatus_esc_hpe" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="estatus_cie_hpe" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="estatus_lec_ep" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="estatus_esc_ep" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="estatus_cie_ep" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="emp_plaza_pmp">
+          <Key>
+            <PropertyRef Name="rfc" />
+            <PropertyRef Name="cod_pago" />
+            <PropertyRef Name="unidad" />
+            <PropertyRef Name="subunidad" />
+            <PropertyRef Name="cat_puesto" />
+            <PropertyRef Name="horas" />
+            <PropertyRef Name="cons_plaza" />
+            <PropertyRef Name="estatus_plaza" />
+            <PropertyRef Name="qna_ini" />
+            <PropertyRef Name="qna_fin" />
+            <PropertyRef Name="mot_mov" />
+            <PropertyRef Name="nivel_sueldo" />
+          </Key>
+          <Property Name="rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="cod_pago" Type="Int16" Nullable="false" />
+          <Property Name="unidad" Type="Int16" Nullable="false" />
+          <Property Name="subunidad" Type="Int16" Nullable="false" />
+          <Property Name="cat_puesto" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="horas" Type="Double" Nullable="false" />
+          <Property Name="cons_plaza" Type="Int32" Nullable="false" />
+          <Property Name="estatus_plaza" Type="Int16" Nullable="false" />
+          <Property Name="qna_ini" Type="Int32" Nullable="false" />
+          <Property Name="qna_fin" Type="Int32" Nullable="false" />
+          <Property Name="mot_mov" Type="Int16" Nullable="false" />
+          <Property Name="nivel_sueldo" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hpc_pmp">
+          <Key>
+            <PropertyRef Name="cod_pago" />
+            <PropertyRef Name="unidad" />
+            <PropertyRef Name="subunidad" />
+            <PropertyRef Name="cat_puesto" />
+            <PropertyRef Name="horas" />
+            <PropertyRef Name="cons_plaza" />
+            <PropertyRef Name="ent_fed" />
+            <PropertyRef Name="ct_clasif" />
+            <PropertyRef Name="ct_id" />
+            <PropertyRef Name="ct_secuencial" />
+            <PropertyRef Name="ct_digito_ver" />
+            <PropertyRef Name="qna_fin" />
+            <PropertyRef Name="qna_ini" />
+            <PropertyRef Name="num_doc" />
+          </Key>
+          <Property Name="u_version" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="cod_pago" Type="Int16" Nullable="false" />
+          <Property Name="unidad" Type="Int16" Nullable="false" />
+          <Property Name="subunidad" Type="Int16" Nullable="false" />
+          <Property Name="cat_puesto" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="horas" Type="Double" Nullable="false" />
+          <Property Name="cons_plaza" Type="Int32" Nullable="false" />
+          <Property Name="ent_fed" Type="Int16" Nullable="false" />
+          <Property Name="ct_clasif" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ct_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ct_secuencial" Type="Int16" Nullable="false" />
+          <Property Name="ct_digito_ver" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="qna_fin" Type="Int32" Nullable="false" />
+          <Property Name="qna_ini" Type="Int32" Nullable="false" />
+          <Property Name="num_doc" Type="Int32" Nullable="false" />
+          <Property Name="fec_doc" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ct_basico">
+          <Key>
+            <PropertyRef Name="ent_fed" />
+            <PropertyRef Name="ct_clasif" />
+            <PropertyRef Name="ct_id" />
+            <PropertyRef Name="ct_secuencial" />
+            <PropertyRef Name="ct_digito_ver" />
+          </Key>
+          <Property Name="ent_fed" Type="Int16" Nullable="false" />
+          <Property Name="ct_clasif" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ct_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ct_secuencial" Type="Int16" Nullable="false" />
+          <Property Name="ct_digito_ver" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="clave_ct" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ct_nombre" Type="String" MaxLength="115" FixedLength="true" Unicode="false" />
+          <Property Name="ct_dom" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="ct_calle" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="ct_calle1" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="municipio" Type="Int16" Nullable="false" />
+          <Property Name="localidad" Type="Int16" Nullable="false" />
+          <Property Name="ct_cp" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="ct_tel" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="ct_fax" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="ct_nomdir" Type="String" MaxLength="52" FixedLength="true" Unicode="false" />
+          <Property Name="ct_dep_admva" Type="Int16" />
+          <Property Name="ct_dep_norm" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="zona_escolar" Type="Int16" Nullable="false" />
+          <Property Name="ct_depto_se_re" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ct_sector" Type="Int16" />
+          <Property Name="ct_alm_dis" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="ct_area_geo" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="ct_sosten" Type="Int16" />
+          <Property Name="ct_serv" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="turno" Type="Int16" />
+          <Property Name="ct_cve_inm" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="ct_tip_cor" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ct_num_cor" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="ct_fec_cor" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="ct_cve_eco" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ct_fec_fun" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="estatus_ct" Type="Int16" />
+          <Property Name="ct_fec_alt" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="ct_fec_act" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="unidad_resp" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="programa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="subprograma" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="op" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="rfc" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="unidad_dist_cheque" Type="Int16" />
+          <Property Name="operador" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="empleado_u">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="paterno" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="materno" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="nom" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="nom_emp" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="edo_civil" Type="Int16" Nullable="false" />
+          <Property Name="fecha_nac" Type="DateTime" Precision="3" />
+          <Property Name="edo_nac" Type="Int16" Nullable="false" />
+          <Property Name="lug_nac" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="nombre_padre" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="nombre_madre" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="acta_no" Type="Int32" />
+          <Property Name="anio" Type="Int32" />
+          <Property Name="foja" Type="Int32" />
+          <Property Name="libro" Type="Int32" />
+          <Property Name="cartilla_smn" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="clase" Type="Int16" />
+          <Property Name="estatus_cartilla" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="nombre_esposo_a" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="lugar_filiacion" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_filiacion" Type="DateTime" Precision="3" />
+          <Property Name="fecha_examen" Type="DateTime" Precision="3" />
+          <Property Name="qna_ini" Type="Int32" />
+          <Property Name="act_inact" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ban_pago" Type="Int16" Nullable="false" />
+          <Property Name="mot_baja" Type="Int16" Nullable="false" />
+          <Property Name="qna_baja" Type="Int32" Nullable="false" />
+          <Property Name="qna_ing_gob" Type="Int32" />
+          <Property Name="qna_ing_sep" Type="Int32" />
+          <Property Name="qna_ing_hon" Type="Int32" />
+          <Property Name="qna_ing_pro" Type="Int32" />
+          <Property Name="niv_academico" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="escuela_egreso" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="anio_egreso" Type="Int16" />
+          <Property Name="titulado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="tipo_tit" Type="Int16" Nullable="false" />
+          <Property Name="tipo_lic" Type="Int16" Nullable="false" />
+          <Property Name="num_tit" Type="Int32" Nullable="false" />
+          <Property Name="num_lic" Type="Int32" Nullable="false" />
+          <Property Name="emp_cta_sar" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
+          <Property Name="acumulado_horas_42" Type="Double" Nullable="false" />
+          <Property Name="acumulado_horas_48" Type="Double" Nullable="false" />
+          <Property Name="emp_dom" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="emp_dom_col" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="emp_dom_pob" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="emp_dom_tel" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="emp_dom_cel" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="emp_dom_cp" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="emp_dom_calle" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="emp_dom_num" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="emp_dom_numint" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="emp_dom_mun" Type="Int16" />
+          <Property Name="emp_dom_loc" Type="Int16" />
+          <Property Name="emp_cta_bancaria" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
+          <Property Name="bco_admdor" Type="Int16" Nullable="false" />
+          <Property Name="bco_plaza" Type="Int16" Nullable="false" />
+          <Property Name="fecha_def" Type="DateTime" Precision="3" />
+          <Property Name="creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="curp" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="senial" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="edocivil" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="nivacademico" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="efreside" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="edad" Type="Int16" />
+          <Property Name="sistema" Type="Boolean" Nullable="false" />
+          <Property Name="id_pais" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="mun_nac" Type="Int16" />
+          <Property Name="emp_dom_ent" Type="Int16" />
+          <NavigationProperty Name="captura_mov_sibl" Relationship="AdmSIMOVBL_msModel.FK_captura_mov_sibl_empleado_u" FromRole="empleado_u" ToRole="captura_mov_sibl" />
+        </EntityType>
+        <EntityType Name="bit_cap_mov_sibl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_captura" Type="Int32" Nullable="false" />
+          <Property Name="estatus_op" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="operacion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="captura_mov_sibl" Relationship="AdmSIMOVBL_msModel.FK_bit_cap_mov_sibl_captura_mov_sibl" FromRole="bit_cap_mov_sibl" ToRole="captura_mov_sibl" />
+        </EntityType>
+        <EntityType Name="documentos_cap_sibl">
+          <Key>
+            <PropertyRef Name="id_doc_sibl" />
+          </Key>
+          <Property Name="id_doc_sibl" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_captura" Type="Int32" Nullable="false" />
+          <Property Name="id_doc_tipdoc" Type="Int32" Nullable="false" />
+          <Property Name="path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="doc_tipomov_sibl" Relationship="AdmSIMOVBL_msModel.FK_documentos_cap_sibl_doc_tipomov_sibl" FromRole="documentos_cap_sibl" ToRole="doc_tipomov_sibl" />
+          <NavigationProperty Name="captura_mov_sibl" Relationship="AdmSIMOVBL_msModel.FK_documentos_cap_sibl_captura_mov_sibl" FromRole="documentos_cap_sibl" ToRole="captura_mov_sibl" />
+        </EntityType>
+        <EntityType Name="plazas_cap_sibl">
+          <Key>
+            <PropertyRef Name="id_plaza_cap" />
+          </Key>
+          <Property Name="id_plaza_cap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_captura" Type="Int32" Nullable="false" />
+          <Property Name="plaza" Type="String" Nullable="false" MaxLength="33" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_captura" Type="DateTime" Precision="0" />
+          <Property Name="fecha_cancelacion" Type="DateTime" Precision="0" />
+          <Property Name="estatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="captura_mov_sibl" Relationship="AdmSIMOVBL_msModel.FK_plazas_cap_sibl_captura_mov_sibl" FromRole="plazas_cap_sibl" ToRole="captura_mov_sibl" />
+        </EntityType>
+        <Association Name="FK_documentos_cap_sibl_doc_tipomov_sibl">
+          <End Type="AdmSIMOVBL_msModel.doc_tipomov_sibl" Role="doc_tipomov_sibl" Multiplicity="1" />
+          <End Type="AdmSIMOVBL_msModel.documentos_cap_sibl" Role="documentos_cap_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doc_tipomov_sibl">
+              <PropertyRef Name="id_doc_tipdoc" />
+            </Principal>
+            <Dependent Role="documentos_cap_sibl">
+              <PropertyRef Name="id_doc_tipdoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="captura_mov_sibl">
+          <Key>
+            <PropertyRef Name="id_captura" />
+          </Key>
+          <Property Name="id_captura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="area" Type="Int16" Nullable="false" />
+          <Property Name="id_tipo_mov" Type="Int32" Nullable="false" />
+          <Property Name="id_empleado" Type="Int32" Nullable="false" />
+          <Property Name="rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="ct" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_ini" Type="DateTime" Precision="0" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="0" />
+          <Property Name="fecha_captura" Type="DateTime" Precision="0" />
+          <Property Name="fecha_alerta" Type="DateTime" Precision="0" />
+          <Property Name="fecha_envio" Type="DateTime" Precision="0" />
+          <Property Name="fecha_recibido" Type="DateTime" Precision="0" />
+          <Property Name="fecha_cancelacion" Type="DateTime" Precision="0" />
+          <Property Name="observacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_cap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="estatus" Type="Int16" />
+          <NavigationProperty Name="bit_cap_mov_sibl" Relationship="AdmSIMOVBL_msModel.FK_bit_cap_mov_sibl_captura_mov_sibl" FromRole="captura_mov_sibl" ToRole="bit_cap_mov_sibl" />
+          <NavigationProperty Name="captura_mov_sibl1" Relationship="AdmSIMOVBL_msModel.FK_captura_mov_sibl_captura_mov_sibl" FromRole="captura_mov_sibl" ToRole="captura_mov_sibl1" />
+          <NavigationProperty Name="captura_mov_sibl2" Relationship="AdmSIMOVBL_msModel.FK_captura_mov_sibl_captura_mov_sibl" FromRole="captura_mov_sibl1" ToRole="captura_mov_sibl" />
+          <NavigationProperty Name="empleado_u" Relationship="AdmSIMOVBL_msModel.FK_captura_mov_sibl_empleado_u" FromRole="captura_mov_sibl" ToRole="empleado_u" />
+          <NavigationProperty Name="documentos_cap_sibl" Relationship="AdmSIMOVBL_msModel.FK_documentos_cap_sibl_captura_mov_sibl" FromRole="captura_mov_sibl" ToRole="documentos_cap_sibl" />
+          <NavigationProperty Name="plazas_cap_sibl" Relationship="AdmSIMOVBL_msModel.FK_plazas_cap_sibl_captura_mov_sibl" FromRole="captura_mov_sibl" ToRole="plazas_cap_sibl" />
+          <NavigationProperty Name="tipo_mov_sibl" Relationship="AdmSIMOVBL_msModel.FK_captura_mov_sibl_tipo_mov_sibl" FromRole="captura_mov_sibl" ToRole="tipo_mov_sibl" />
+        </EntityType>
+        <Association Name="FK_bit_cap_mov_sibl_captura_mov_sibl">
+          <End Type="AdmSIMOVBL_msModel.captura_mov_sibl" Role="captura_mov_sibl" Multiplicity="1" />
+          <End Type="AdmSIMOVBL_msModel.bit_cap_mov_sibl" Role="bit_cap_mov_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="captura_mov_sibl">
+              <PropertyRef Name="id_captura" />
+            </Principal>
+            <Dependent Role="bit_cap_mov_sibl">
+              <PropertyRef Name="id_captura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_captura_mov_sibl_captura_mov_sibl">
+          <End Type="AdmSIMOVBL_msModel.captura_mov_sibl" Role="captura_mov_sibl" Multiplicity="1" />
+          <End Type="AdmSIMOVBL_msModel.captura_mov_sibl" Role="captura_mov_sibl1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="captura_mov_sibl">
+              <PropertyRef Name="id_captura" />
+            </Principal>
+            <Dependent Role="captura_mov_sibl1">
+              <PropertyRef Name="id_captura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_captura_mov_sibl_empleado_u">
+          <End Type="AdmSIMOVBL_msModel.empleado_u" Role="empleado_u" Multiplicity="1" />
+          <End Type="AdmSIMOVBL_msModel.captura_mov_sibl" Role="captura_mov_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado_u">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="captura_mov_sibl">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_documentos_cap_sibl_captura_mov_sibl">
+          <End Type="AdmSIMOVBL_msModel.captura_mov_sibl" Role="captura_mov_sibl" Multiplicity="1" />
+          <End Type="AdmSIMOVBL_msModel.documentos_cap_sibl" Role="documentos_cap_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="captura_mov_sibl">
+              <PropertyRef Name="id_captura" />
+            </Principal>
+            <Dependent Role="documentos_cap_sibl">
+              <PropertyRef Name="id_captura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_plazas_cap_sibl_captura_mov_sibl">
+          <End Type="AdmSIMOVBL_msModel.captura_mov_sibl" Role="captura_mov_sibl" Multiplicity="1" />
+          <End Type="AdmSIMOVBL_msModel.plazas_cap_sibl" Role="plazas_cap_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="captura_mov_sibl">
+              <PropertyRef Name="id_captura" />
+            </Principal>
+            <Dependent Role="plazas_cap_sibl">
+              <PropertyRef Name="id_captura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Configuraciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Num_App" Type="Int32" Nullable="false" />
+          <Property Name="Sistema" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Ciclo_Escolar" Type="Int32" />
+          <Property Name="Fecha_Apertura" Type="DateTime" Precision="0" />
+          <Property Name="Fecha_Cierre" Type="DateTime" Precision="0" />
+          <Property Name="Titulo" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Leyenda_PC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="categorias_areas">
+          <Key>
+            <PropertyRef Name="unidad" />
+            <PropertyRef Name="subunidad" />
+            <PropertyRef Name="cat_puesto" />
+          </Key>
+          <Property Name="unidad" Type="Int16" Nullable="false" />
+          <Property Name="subunidad" Type="Int16" Nullable="false" />
+          <Property Name="cat_puesto" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="nivel_educativo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="area_ant" Type="Int32" />
+        </EntityType>
+        <EntityType Name="emp_qna_ing_uid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="qna_ing" Type="Int32" />
+        </EntityType>
+        <EntityType Name="areas">
+          <Key>
+            <PropertyRef Name="area" />
+          </Key>
+          <Property Name="area" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="false" />
+          <Property Name="titular" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="false" />
+          <Property Name="logoarea" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FUP" Type="Int16" Nullable="false" />
+          <Property Name="idsupzona" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="idjefsector" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="rfc" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="firma" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="activa" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tipo_mov_sibl">
+          <Key>
+            <PropertyRef Name="id_tipo" />
+          </Key>
+          <Property Name="id_tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cve_mov" Type="Int16" Nullable="false" />
+          <Property Name="mot_movcap" Type="Int16" Nullable="false" />
+          <Property Name="dias_soliditud" Type="Int16" />
+          <Property Name="personal_con_derecho" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="requisitos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="duracion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="prorroga" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="base_legal" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="doc_solicitud" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="all_plazas" Type="Int16" Nullable="false" />
+          <Property Name="estatus" Type="Int16" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="captura_mov_sibl" Relationship="AdmSIMOVBL_msModel.FK_captura_mov_sibl_tipo_mov_sibl" FromRole="tipo_mov_sibl" ToRole="captura_mov_sibl" />
+          <NavigationProperty Name="doc_tipomov_sibl" Relationship="AdmSIMOVBL_msModel.FK__doc_tipom__id_ti__577EAFDF" FromRole="tipo_mov_sibl" ToRole="doc_tipomov_sibl" />
+        </EntityType>
+        <Association Name="FK_captura_mov_sibl_tipo_mov_sibl">
+          <End Type="AdmSIMOVBL_msModel.tipo_mov_sibl" Role="tipo_mov_sibl" Multiplicity="1" />
+          <End Type="AdmSIMOVBL_msModel.captura_mov_sibl" Role="captura_mov_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_mov_sibl">
+              <PropertyRef Name="id_tipo" />
+            </Principal>
+            <Dependent Role="captura_mov_sibl">
+              <PropertyRef Name="id_tipo_mov" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__doc_tipom__id_ti__577EAFDF">
+          <End Type="AdmSIMOVBL_msModel.tipo_mov_sibl" Role="tipo_mov_sibl" Multiplicity="1" />
+          <End Type="AdmSIMOVBL_msModel.doc_tipomov_sibl" Role="doc_tipomov_sibl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_mov_sibl">
+              <PropertyRef Name="id_tipo" />
+            </Principal>
+            <Dependent Role="doc_tipomov_sibl">
+              <PropertyRef Name="id_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AdmSIMOVBL_msModelStoreContainer" CdmEntityContainer="AdmSIMOVBL_msEntities">
+          <EntitySetMapping Name="app_usuario_objeto">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.app_usuario_objeto">
+              <MappingFragment StoreEntitySet="app_usuario_objeto">
+                <ScalarProperty Name="clave_app" ColumnName="clave_app" />
+                <ScalarProperty Name="clave_mod" ColumnName="clave_mod" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="tipo_objeto" ColumnName="tipo_objeto" />
+                <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
+                <ScalarProperty Name="Obj_Json" ColumnName="Obj_Json" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mvc_permisos">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.mvc_permisos">
+              <MappingFragment StoreEntitySet="mvc_permisos">
+                <ScalarProperty Name="clave_app" ColumnName="clave_app" />
+                <ScalarProperty Name="clave_mod" ColumnName="clave_mod" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="permisos" ColumnName="permisos" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mvc_permisos_opciones">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.mvc_permisos_opciones">
+              <MappingFragment StoreEntitySet="mvc_permisos_opciones">
+                <ScalarProperty Name="clave_app" ColumnName="clave_app" />
+                <ScalarProperty Name="clave_mod" ColumnName="clave_mod" />
+                <ScalarProperty Name="opc" ColumnName="opc" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mvc_usaurios">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.mvc_usaurios">
+              <MappingFragment StoreEntitySet="mvc_usaurios">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="doc_tipomov_sibl">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.doc_tipomov_sibl">
+              <MappingFragment StoreEntitySet="doc_tipomov_sibl">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+                <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+                <ScalarProperty Name="id_doc_tipdoc" ColumnName="id_doc_tipdoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_doc_sibl">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.tipo_doc_sibl">
+              <MappingFragment StoreEntitySet="tipo_doc_sibl">
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configuracion_sibl">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.configuracion_sibl">
+              <MappingFragment StoreEntitySet="configuracion_sibl">
+                <ScalarProperty Name="leyenda" ColumnName="leyenda" />
+                <ScalarProperty Name="periodo_abierto" ColumnName="periodo_abierto" />
+                <ScalarProperty Name="id_configuracion" ColumnName="id_configuracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cve_mov">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.cve_mov">
+              <MappingFragment StoreEntitySet="cve_mov">
+                <ScalarProperty Name="tabla_mov" ColumnName="tabla_mov" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cve_mov1" ColumnName="cve_mov" />
+                <ScalarProperty Name="u_version" ColumnName="u_version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="motivos_mov">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.motivos_mov">
+              <MappingFragment StoreEntitySet="motivos_mov">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estatus_cie_ep" ColumnName="estatus_cie_ep" />
+                <ScalarProperty Name="estatus_esc_ep" ColumnName="estatus_esc_ep" />
+                <ScalarProperty Name="estatus_lec_ep" ColumnName="estatus_lec_ep" />
+                <ScalarProperty Name="estatus_cie_hpe" ColumnName="estatus_cie_hpe" />
+                <ScalarProperty Name="estatus_esc_hpe" ColumnName="estatus_esc_hpe" />
+                <ScalarProperty Name="estatus_lec_hpe" ColumnName="estatus_lec_hpe" />
+                <ScalarProperty Name="mot_mov" ColumnName="mot_mov" />
+                <ScalarProperty Name="u_version" ColumnName="u_version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="emp_plaza_pmp">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.emp_plaza_pmp">
+              <MappingFragment StoreEntitySet="emp_plaza_pmp">
+                <ScalarProperty Name="nivel_sueldo" ColumnName="nivel_sueldo" />
+                <ScalarProperty Name="mot_mov" ColumnName="mot_mov" />
+                <ScalarProperty Name="qna_fin" ColumnName="qna_fin" />
+                <ScalarProperty Name="qna_ini" ColumnName="qna_ini" />
+                <ScalarProperty Name="estatus_plaza" ColumnName="estatus_plaza" />
+                <ScalarProperty Name="cons_plaza" ColumnName="cons_plaza" />
+                <ScalarProperty Name="horas" ColumnName="horas" />
+                <ScalarProperty Name="cat_puesto" ColumnName="cat_puesto" />
+                <ScalarProperty Name="subunidad" ColumnName="subunidad" />
+                <ScalarProperty Name="unidad" ColumnName="unidad" />
+                <ScalarProperty Name="cod_pago" ColumnName="cod_pago" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hpc_pmp">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.hpc_pmp">
+              <MappingFragment StoreEntitySet="hpc_pmp">
+                <ScalarProperty Name="fec_doc" ColumnName="fec_doc" />
+                <ScalarProperty Name="num_doc" ColumnName="num_doc" />
+                <ScalarProperty Name="qna_ini" ColumnName="qna_ini" />
+                <ScalarProperty Name="qna_fin" ColumnName="qna_fin" />
+                <ScalarProperty Name="ct_digito_ver" ColumnName="ct_digito_ver" />
+                <ScalarProperty Name="ct_secuencial" ColumnName="ct_secuencial" />
+                <ScalarProperty Name="ct_id" ColumnName="ct_id" />
+                <ScalarProperty Name="ct_clasif" ColumnName="ct_clasif" />
+                <ScalarProperty Name="ent_fed" ColumnName="ent_fed" />
+                <ScalarProperty Name="cons_plaza" ColumnName="cons_plaza" />
+                <ScalarProperty Name="horas" ColumnName="horas" />
+                <ScalarProperty Name="cat_puesto" ColumnName="cat_puesto" />
+                <ScalarProperty Name="subunidad" ColumnName="subunidad" />
+                <ScalarProperty Name="unidad" ColumnName="unidad" />
+                <ScalarProperty Name="cod_pago" ColumnName="cod_pago" />
+                <ScalarProperty Name="u_version" ColumnName="u_version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ct_basico">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.ct_basico">
+              <MappingFragment StoreEntitySet="ct_basico">
+                <ScalarProperty Name="operador" ColumnName="operador" />
+                <ScalarProperty Name="unidad_dist_cheque" ColumnName="unidad_dist_cheque" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="op" ColumnName="op" />
+                <ScalarProperty Name="subprograma" ColumnName="subprograma" />
+                <ScalarProperty Name="programa" ColumnName="programa" />
+                <ScalarProperty Name="unidad_resp" ColumnName="unidad_resp" />
+                <ScalarProperty Name="ct_fec_act" ColumnName="ct_fec_act" />
+                <ScalarProperty Name="ct_fec_alt" ColumnName="ct_fec_alt" />
+                <ScalarProperty Name="estatus_ct" ColumnName="estatus_ct" />
+                <ScalarProperty Name="ct_fec_fun" ColumnName="ct_fec_fun" />
+                <ScalarProperty Name="ct_cve_eco" ColumnName="ct_cve_eco" />
+                <ScalarProperty Name="ct_fec_cor" ColumnName="ct_fec_cor" />
+                <ScalarProperty Name="ct_num_cor" ColumnName="ct_num_cor" />
+                <ScalarProperty Name="ct_tip_cor" ColumnName="ct_tip_cor" />
+                <ScalarProperty Name="ct_cve_inm" ColumnName="ct_cve_inm" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+                <ScalarProperty Name="ct_serv" ColumnName="ct_serv" />
+                <ScalarProperty Name="ct_sosten" ColumnName="ct_sosten" />
+                <ScalarProperty Name="ct_area_geo" ColumnName="ct_area_geo" />
+                <ScalarProperty Name="ct_alm_dis" ColumnName="ct_alm_dis" />
+                <ScalarProperty Name="ct_sector" ColumnName="ct_sector" />
+                <ScalarProperty Name="ct_depto_se_re" ColumnName="ct_depto_se_re" />
+                <ScalarProperty Name="zona_escolar" ColumnName="zona_escolar" />
+                <ScalarProperty Name="ct_dep_norm" ColumnName="ct_dep_norm" />
+                <ScalarProperty Name="ct_dep_admva" ColumnName="ct_dep_admva" />
+                <ScalarProperty Name="ct_nomdir" ColumnName="ct_nomdir" />
+                <ScalarProperty Name="ct_fax" ColumnName="ct_fax" />
+                <ScalarProperty Name="ct_tel" ColumnName="ct_tel" />
+                <ScalarProperty Name="ct_cp" ColumnName="ct_cp" />
+                <ScalarProperty Name="localidad" ColumnName="localidad" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="ct_calle1" ColumnName="ct_calle1" />
+                <ScalarProperty Name="ct_calle" ColumnName="ct_calle" />
+                <ScalarProperty Name="ct_dom" ColumnName="ct_dom" />
+                <ScalarProperty Name="ct_nombre" ColumnName="ct_nombre" />
+                <ScalarProperty Name="clave_ct" ColumnName="clave_ct" />
+                <ScalarProperty Name="ct_digito_ver" ColumnName="ct_digito_ver" />
+                <ScalarProperty Name="ct_secuencial" ColumnName="ct_secuencial" />
+                <ScalarProperty Name="ct_id" ColumnName="ct_id" />
+                <ScalarProperty Name="ct_clasif" ColumnName="ct_clasif" />
+                <ScalarProperty Name="ent_fed" ColumnName="ent_fed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleado_u">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.empleado_u">
+              <MappingFragment StoreEntitySet="empleado_u">
+                <ScalarProperty Name="emp_dom_ent" ColumnName="emp_dom_ent" />
+                <ScalarProperty Name="mun_nac" ColumnName="mun_nac" />
+                <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+                <ScalarProperty Name="sistema" ColumnName="sistema" />
+                <ScalarProperty Name="edad" ColumnName="edad" />
+                <ScalarProperty Name="efreside" ColumnName="efreside" />
+                <ScalarProperty Name="nivacademico" ColumnName="nivacademico" />
+                <ScalarProperty Name="edocivil" ColumnName="edocivil" />
+                <ScalarProperty Name="senial" ColumnName="senial" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="creacion" ColumnName="creacion" />
+                <ScalarProperty Name="fecha_def" ColumnName="fecha_def" />
+                <ScalarProperty Name="bco_plaza" ColumnName="bco_plaza" />
+                <ScalarProperty Name="bco_admdor" ColumnName="bco_admdor" />
+                <ScalarProperty Name="emp_cta_bancaria" ColumnName="emp_cta_bancaria" />
+                <ScalarProperty Name="emp_dom_loc" ColumnName="emp_dom_loc" />
+                <ScalarProperty Name="emp_dom_mun" ColumnName="emp_dom_mun" />
+                <ScalarProperty Name="emp_dom_numint" ColumnName="emp_dom_numint" />
+                <ScalarProperty Name="emp_dom_num" ColumnName="emp_dom_num" />
+                <ScalarProperty Name="emp_dom_calle" ColumnName="emp_dom_calle" />
+                <ScalarProperty Name="emp_dom_cp" ColumnName="emp_dom_cp" />
+                <ScalarProperty Name="emp_dom_cel" ColumnName="emp_dom_cel" />
+                <ScalarProperty Name="emp_dom_tel" ColumnName="emp_dom_tel" />
+                <ScalarProperty Name="emp_dom_pob" ColumnName="emp_dom_pob" />
+                <ScalarProperty Name="emp_dom_col" ColumnName="emp_dom_col" />
+                <ScalarProperty Name="emp_dom" ColumnName="emp_dom" />
+                <ScalarProperty Name="acumulado_horas_48" ColumnName="acumulado_horas_48" />
+                <ScalarProperty Name="acumulado_horas_42" ColumnName="acumulado_horas_42" />
+                <ScalarProperty Name="emp_cta_sar" ColumnName="emp_cta_sar" />
+                <ScalarProperty Name="num_lic" ColumnName="num_lic" />
+                <ScalarProperty Name="num_tit" ColumnName="num_tit" />
+                <ScalarProperty Name="tipo_lic" ColumnName="tipo_lic" />
+                <ScalarProperty Name="tipo_tit" ColumnName="tipo_tit" />
+                <ScalarProperty Name="titulado" ColumnName="titulado" />
+                <ScalarProperty Name="anio_egreso" ColumnName="anio_egreso" />
+                <ScalarProperty Name="escuela_egreso" ColumnName="escuela_egreso" />
+                <ScalarProperty Name="niv_academico" ColumnName="niv_academico" />
+                <ScalarProperty Name="qna_ing_pro" ColumnName="qna_ing_pro" />
+                <ScalarProperty Name="qna_ing_hon" ColumnName="qna_ing_hon" />
+                <ScalarProperty Name="qna_ing_sep" ColumnName="qna_ing_sep" />
+                <ScalarProperty Name="qna_ing_gob" ColumnName="qna_ing_gob" />
+                <ScalarProperty Name="qna_baja" ColumnName="qna_baja" />
+                <ScalarProperty Name="mot_baja" ColumnName="mot_baja" />
+                <ScalarProperty Name="ban_pago" ColumnName="ban_pago" />
+                <ScalarProperty Name="act_inact" ColumnName="act_inact" />
+                <ScalarProperty Name="qna_ini" ColumnName="qna_ini" />
+                <ScalarProperty Name="fecha_examen" ColumnName="fecha_examen" />
+                <ScalarProperty Name="fecha_filiacion" ColumnName="fecha_filiacion" />
+                <ScalarProperty Name="lugar_filiacion" ColumnName="lugar_filiacion" />
+                <ScalarProperty Name="nombre_esposo_a" ColumnName="nombre_esposo_a" />
+                <ScalarProperty Name="estatus_cartilla" ColumnName="estatus_cartilla" />
+                <ScalarProperty Name="clase" ColumnName="clase" />
+                <ScalarProperty Name="cartilla_smn" ColumnName="cartilla_smn" />
+                <ScalarProperty Name="libro" ColumnName="libro" />
+                <ScalarProperty Name="foja" ColumnName="foja" />
+                <ScalarProperty Name="anio" ColumnName="anio" />
+                <ScalarProperty Name="acta_no" ColumnName="acta_no" />
+                <ScalarProperty Name="nombre_madre" ColumnName="nombre_madre" />
+                <ScalarProperty Name="nombre_padre" ColumnName="nombre_padre" />
+                <ScalarProperty Name="lug_nac" ColumnName="lug_nac" />
+                <ScalarProperty Name="edo_nac" ColumnName="edo_nac" />
+                <ScalarProperty Name="fecha_nac" ColumnName="fecha_nac" />
+                <ScalarProperty Name="edo_civil" ColumnName="edo_civil" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="nom_emp" ColumnName="nom_emp" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="materno" ColumnName="materno" />
+                <ScalarProperty Name="paterno" ColumnName="paterno" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bit_cap_mov_sibl">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.bit_cap_mov_sibl">
+              <MappingFragment StoreEntitySet="bit_cap_mov_sibl">
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="operacion" ColumnName="operacion" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="estatus_op" ColumnName="estatus_op" />
+                <ScalarProperty Name="id_captura" ColumnName="id_captura" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documentos_cap_sibl">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.documentos_cap_sibl">
+              <MappingFragment StoreEntitySet="documentos_cap_sibl">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="id_doc_tipdoc" ColumnName="id_doc_tipdoc" />
+                <ScalarProperty Name="id_captura" ColumnName="id_captura" />
+                <ScalarProperty Name="id_doc_sibl" ColumnName="id_doc_sibl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="plazas_cap_sibl">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.plazas_cap_sibl">
+              <MappingFragment StoreEntitySet="plazas_cap_sibl">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="fecha_cancelacion" ColumnName="fecha_cancelacion" />
+                <ScalarProperty Name="fecha_captura" ColumnName="fecha_captura" />
+                <ScalarProperty Name="plaza" ColumnName="plaza" />
+                <ScalarProperty Name="id_captura" ColumnName="id_captura" />
+                <ScalarProperty Name="id_plaza_cap" ColumnName="id_plaza_cap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="captura_mov_sibl">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.captura_mov_sibl">
+              <MappingFragment StoreEntitySet="captura_mov_sibl">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="usuario_cap" ColumnName="usuario_cap" />
+                <ScalarProperty Name="observacion" ColumnName="observacion" />
+                <ScalarProperty Name="fecha_cancelacion" ColumnName="fecha_cancelacion" />
+                <ScalarProperty Name="fecha_recibido" ColumnName="fecha_recibido" />
+                <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
+                <ScalarProperty Name="fecha_alerta" ColumnName="fecha_alerta" />
+                <ScalarProperty Name="fecha_captura" ColumnName="fecha_captura" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="fecha_ini" ColumnName="fecha_ini" />
+                <ScalarProperty Name="ct" ColumnName="ct" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_tipo_mov" ColumnName="id_tipo_mov" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="id_captura" ColumnName="id_captura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configuraciones">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.Configuraciones">
+              <MappingFragment StoreEntitySet="Configuraciones">
+                <ScalarProperty Name="Leyenda_PC" ColumnName="Leyenda_PC" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Fecha_Cierre" ColumnName="Fecha_Cierre" />
+                <ScalarProperty Name="Fecha_Apertura" ColumnName="Fecha_Apertura" />
+                <ScalarProperty Name="Ciclo_Escolar" ColumnName="Ciclo_Escolar" />
+                <ScalarProperty Name="Sistema" ColumnName="Sistema" />
+                <ScalarProperty Name="Num_App" ColumnName="Num_App" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categorias_areas">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.categorias_areas">
+              <MappingFragment StoreEntitySet="categorias_areas">
+                <ScalarProperty Name="area_ant" ColumnName="area_ant" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="nivel_educativo" ColumnName="nivel_educativo" />
+                <ScalarProperty Name="cat_puesto" ColumnName="cat_puesto" />
+                <ScalarProperty Name="subunidad" ColumnName="subunidad" />
+                <ScalarProperty Name="unidad" ColumnName="unidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="emp_qna_ing_uid">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.emp_qna_ing_uid">
+              <MappingFragment StoreEntitySet="emp_qna_ing_uid">
+                <ScalarProperty Name="qna_ing" ColumnName="qna_ing" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="areas">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.areas">
+              <MappingFragment StoreEntitySet="areas">
+                <ScalarProperty Name="activa" ColumnName="activa" />
+                <ScalarProperty Name="firma" ColumnName="firma" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="idjefsector" ColumnName="idjefsector" />
+                <ScalarProperty Name="idsupzona" ColumnName="idsupzona" />
+                <ScalarProperty Name="FUP" ColumnName="FUP" />
+                <ScalarProperty Name="logoarea" ColumnName="logoarea" />
+                <ScalarProperty Name="titular" ColumnName="titular" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="area" ColumnName="area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_mov_sibl">
+            <EntityTypeMapping TypeName="AdmSIMOVBL_msModel.tipo_mov_sibl">
+              <MappingFragment StoreEntitySet="tipo_mov_sibl">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="all_plazas" ColumnName="all_plazas" />
+                <ScalarProperty Name="doc_solicitud" ColumnName="doc_solicitud" />
+                <ScalarProperty Name="base_legal" ColumnName="base_legal" />
+                <ScalarProperty Name="prorroga" ColumnName="prorroga" />
+                <ScalarProperty Name="duracion" ColumnName="duracion" />
+                <ScalarProperty Name="requisitos" ColumnName="requisitos" />
+                <ScalarProperty Name="personal_con_derecho" ColumnName="personal_con_derecho" />
+                <ScalarProperty Name="dias_soliditud" ColumnName="dias_soliditud" />
+                <ScalarProperty Name="mot_movcap" ColumnName="mot_movcap" />
+                <ScalarProperty Name="cve_mov" ColumnName="cve_mov" />
+                <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,23 @@
+﻿@model SIMOV.Models.ListaMovimientosCapturados
+
+@*@(Html
+    .Grid(Model.People)
+    .Build(columns =>
+    {
+        columns.Add(model => model.Name).Titled("Name");
+        columns.Add(model => model.Surname).Titled("Surname");
+        columns.Add(model => model.MaritalStatus).Titled("Marital status");
+
+        columns.Add(model => model.Age).Titled("Age");
+        columns.Add(model => model.Birthday).Titled("Birthday").Formatted("{0:d}");
+        columns.Add(model => model.IsWorking).Titled("Employed");
+    })
+    .Filterable(GridFilterCase.Lower)
+    .Using(GridFilterMode.Header)
+    .Empty("No data found")
+    .Pageable(pager =>
+    {
+        pager.RowsPerPage = 4;
+    })
+    .Sortable()
+)*@
